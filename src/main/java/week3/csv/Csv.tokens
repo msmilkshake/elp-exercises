@@ -1,0 +1,10 @@
+STR=1
+SPACE=2
+NEWLINE=3
+SEP=4
+TRUE=5
+FALSE=6
+INT=7
+FLOAT=8
+'true'=5
+'false'=6
