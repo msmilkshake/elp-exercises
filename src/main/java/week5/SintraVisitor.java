@@ -17,11 +17,47 @@ public interface SintraVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitScript(SintraParser.ScriptContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SintraParser#sequence}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSequence(SintraParser.SequenceContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SintraParser#instruction}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitInstruction(SintraParser.InstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SintraParser#controlStructure}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitControlStructure(SintraParser.ControlStructureContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SintraParser#guard}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGuard(SintraParser.GuardContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SintraParser#ifElse}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfElse(SintraParser.IfElseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SintraParser#alternative}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlternative(SintraParser.AlternativeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SintraParser#while}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhile(SintraParser.WhileContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SintraParser#assign}.
 	 * @param ctx the parse tree

@@ -18,6 +18,16 @@ public interface SintraListener extends ParseTreeListener {
 	 */
 	void exitScript(SintraParser.ScriptContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SintraParser#sequence}.
+	 * @param ctx the parse tree
+	 */
+	void enterSequence(SintraParser.SequenceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SintraParser#sequence}.
+	 * @param ctx the parse tree
+	 */
+	void exitSequence(SintraParser.SequenceContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SintraParser#instruction}.
 	 * @param ctx the parse tree
 	 */
@@ -27,6 +37,56 @@ public interface SintraListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInstruction(SintraParser.InstructionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SintraParser#controlStructure}.
+	 * @param ctx the parse tree
+	 */
+	void enterControlStructure(SintraParser.ControlStructureContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SintraParser#controlStructure}.
+	 * @param ctx the parse tree
+	 */
+	void exitControlStructure(SintraParser.ControlStructureContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SintraParser#guard}.
+	 * @param ctx the parse tree
+	 */
+	void enterGuard(SintraParser.GuardContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SintraParser#guard}.
+	 * @param ctx the parse tree
+	 */
+	void exitGuard(SintraParser.GuardContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SintraParser#ifElse}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfElse(SintraParser.IfElseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SintraParser#ifElse}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfElse(SintraParser.IfElseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SintraParser#alternative}.
+	 * @param ctx the parse tree
+	 */
+	void enterAlternative(SintraParser.AlternativeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SintraParser#alternative}.
+	 * @param ctx the parse tree
+	 */
+	void exitAlternative(SintraParser.AlternativeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SintraParser#while}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhile(SintraParser.WhileContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SintraParser#while}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhile(SintraParser.WhileContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SintraParser#assign}.
 	 * @param ctx the parse tree
