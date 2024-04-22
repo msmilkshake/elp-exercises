@@ -17,35 +17,23 @@ public interface JsonVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitJValue(JsonParser.JValueContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JsonParser#jObject}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJObject(JsonParser.JObjectContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link JsonParser#jArray}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitJArray(JsonParser.JArrayContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JsonParser#jField}.
+	 * Visit a parse tree produced by {@link JsonParser#jNumber}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJField(JsonParser.JFieldContext ctx);
+	T visitJNumber(JsonParser.JNumberContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JsonParser#jString}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitJString(JsonParser.JStringContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JsonParser#jNumber}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJNumber(JsonParser.JNumberContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JsonParser#jBoolean}.
 	 * @param ctx the parse tree
@@ -58,4 +46,22 @@ public interface JsonVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitJNull(JsonParser.JNullContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JsonParser#field}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitField(JsonParser.FieldContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JsonParser#jField}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJField(JsonParser.JFieldContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JsonParser#jObject}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJObject(JsonParser.JObjectContext ctx);
 }

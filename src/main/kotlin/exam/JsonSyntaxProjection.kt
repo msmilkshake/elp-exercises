@@ -32,7 +32,7 @@ fun JNullContext.toAst(): JNull =
 
 fun JObjectContext.toAst(): JObject =
     JObject(jField().map {
-        JField(it.FIELD().text, it.jValue().toAst())
+        JField(it.field().text, it.jValue().toAst())
     })
 
 fun JArrayContext.toAst(): JArray =
@@ -67,7 +67,7 @@ fun main() {
 //        """.trimIndent()
     
     val text = """
-            { "a": [1, false], "a": 3 }
+            { "a": ["1", "false"], "aa": 3 }
         """.trimIndent()
     
     val lexer = JsonLexer(CharStreams.fromString(text))

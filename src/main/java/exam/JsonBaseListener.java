@@ -29,18 +29,6 @@ public class JsonBaseListener implements JsonListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterJObject(JsonParser.JObjectContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitJObject(JsonParser.JObjectContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterJArray(JsonParser.JArrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -53,13 +41,13 @@ public class JsonBaseListener implements JsonListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterJField(JsonParser.JFieldContext ctx) { }
+	@Override public void enterJNumber(JsonParser.JNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitJField(JsonParser.JFieldContext ctx) { }
+	@Override public void exitJNumber(JsonParser.JNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -72,18 +60,6 @@ public class JsonBaseListener implements JsonListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitJString(JsonParser.JStringContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterJNumber(JsonParser.JNumberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitJNumber(JsonParser.JNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -108,6 +84,42 @@ public class JsonBaseListener implements JsonListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitJNull(JsonParser.JNullContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterField(JsonParser.FieldContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitField(JsonParser.FieldContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterJField(JsonParser.JFieldContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitJField(JsonParser.JFieldContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterJObject(JsonParser.JObjectContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitJObject(JsonParser.JObjectContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

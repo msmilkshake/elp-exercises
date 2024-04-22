@@ -29,7 +29,7 @@ fun JValue.validateArrayType(): Boolean {
     when {
         this is JArray -> {
             if (elements.isNotEmpty()) {
-                for (element in elements.subList(1, elements.size - 1)) {
+                for (element in elements.subList(1, elements.size)) {
                     println(element.javaClass)
                     println(elements[0].javaClass)
                     if (element.javaClass != elements[0].javaClass) {

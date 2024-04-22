@@ -18,16 +18,6 @@ public interface JsonListener extends ParseTreeListener {
 	 */
 	void exitJValue(JsonParser.JValueContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JsonParser#jObject}.
-	 * @param ctx the parse tree
-	 */
-	void enterJObject(JsonParser.JObjectContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link JsonParser#jObject}.
-	 * @param ctx the parse tree
-	 */
-	void exitJObject(JsonParser.JObjectContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link JsonParser#jArray}.
 	 * @param ctx the parse tree
 	 */
@@ -38,15 +28,15 @@ public interface JsonListener extends ParseTreeListener {
 	 */
 	void exitJArray(JsonParser.JArrayContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JsonParser#jField}.
+	 * Enter a parse tree produced by {@link JsonParser#jNumber}.
 	 * @param ctx the parse tree
 	 */
-	void enterJField(JsonParser.JFieldContext ctx);
+	void enterJNumber(JsonParser.JNumberContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JsonParser#jField}.
+	 * Exit a parse tree produced by {@link JsonParser#jNumber}.
 	 * @param ctx the parse tree
 	 */
-	void exitJField(JsonParser.JFieldContext ctx);
+	void exitJNumber(JsonParser.JNumberContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JsonParser#jString}.
 	 * @param ctx the parse tree
@@ -57,16 +47,6 @@ public interface JsonListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitJString(JsonParser.JStringContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link JsonParser#jNumber}.
-	 * @param ctx the parse tree
-	 */
-	void enterJNumber(JsonParser.JNumberContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link JsonParser#jNumber}.
-	 * @param ctx the parse tree
-	 */
-	void exitJNumber(JsonParser.JNumberContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JsonParser#jBoolean}.
 	 * @param ctx the parse tree
@@ -87,4 +67,34 @@ public interface JsonListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitJNull(JsonParser.JNullContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JsonParser#field}.
+	 * @param ctx the parse tree
+	 */
+	void enterField(JsonParser.FieldContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JsonParser#field}.
+	 * @param ctx the parse tree
+	 */
+	void exitField(JsonParser.FieldContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JsonParser#jField}.
+	 * @param ctx the parse tree
+	 */
+	void enterJField(JsonParser.JFieldContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JsonParser#jField}.
+	 * @param ctx the parse tree
+	 */
+	void exitJField(JsonParser.JFieldContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JsonParser#jObject}.
+	 * @param ctx the parse tree
+	 */
+	void enterJObject(JsonParser.JObjectContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JsonParser#jObject}.
+	 * @param ctx the parse tree
+	 */
+	void exitJObject(JsonParser.JObjectContext ctx);
 }

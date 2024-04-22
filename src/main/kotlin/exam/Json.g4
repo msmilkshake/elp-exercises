@@ -1,7 +1,5 @@
 grammar Json;
 
-
-
 jValue:
     jString
     | jNumber
@@ -13,11 +11,13 @@ jValue:
 jArray: '[' (jValue ',')* jValue? ']';
 
 jNumber: INT | FLOAT;
-jString: STR;
+jString: STR | FIELD;
 jBoolean: TRUE | FALSE;
 jNull: NULL;
 
-jField: FIELD ':' jValue;
+field: FIELD;
+
+jField: field ':' jValue;
 jObject: '{' (jField ',')* jField? '}';
 
 FIELD: '"' [a-zA-Z0-9]+ '"';
