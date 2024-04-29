@@ -15,6 +15,7 @@ dependencies {
     implementation(kotlin("script-runtime"))
     implementation("org.antlr:antlr4:4.13.1")
     implementation("com.github.javaparser:javaparser-symbol-solver-core:3.25.1")
+    implementation("org.ow2.asm:asm:9.4")
 }
 
 tasks.test {
