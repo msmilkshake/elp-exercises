@@ -1,7 +1,6 @@
-package week6
+package week7
 
 // evita estar a escrever sempre “Opcodes.”
-import org.checkerframework.checker.units.qual.m
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.Label
 import org.objectweb.asm.Opcodes.*

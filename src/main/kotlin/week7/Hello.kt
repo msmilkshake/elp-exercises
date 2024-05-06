@@ -1,4 +1,4 @@
-package week6
+package week7
 
 // evita estar a escrever sempre “Opcodes.”
 import org.objectweb.asm.ClassWriter

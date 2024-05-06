@@ -25,13 +25,13 @@ data class Script(
 
                     is Print ->
                         checkErrors(instruction.expression, i)
-                    
+
                     is IfElse -> {
                         checkErrors(instruction.guard, i)
                         validateInstructions(instruction.sequence)
                         validateInstructions(instruction.alternative)
                     }
-                    
+
                     is While -> {
                         checkErrors(instruction.guard, i)
                         validateInstructions(instruction.sequence)
@@ -39,7 +39,7 @@ data class Script(
                 }
             }
         }
-        
+
         validateInstructions(instructions)
         return errors
     }
@@ -83,7 +83,7 @@ data class BinaryExpression(
     val right: Expression
 ) : Expression
 
-sealed interface ControlStructure: Instruction {    
+sealed interface ControlStructure : Instruction {
     val sequence: List<Instruction>
     val guard: Expression
 }
@@ -92,12 +92,12 @@ data class IfElse(
     override val sequence: List<Instruction>,
     override val guard: Expression,
     val alternative: List<Instruction>
-): ControlStructure
+) : ControlStructure
 
 data class While(
     override val sequence: List<Instruction>,
     override val guard: Expression,
-): ControlStructure
+) : ControlStructure
 
 enum class Operator {
     PLUS,
@@ -111,12 +111,18 @@ enum class Operator {
     GT,
     GTE,
     AND,
-    OR
+    OR;
+
+    fun isArithmetic(): Boolean =
+        when (this) {
+            PLUS, MINUS, TIMES, DIVIDE, MOD -> true
+            else -> false
+        }
 }
 
 class Interpreter(val script: Script) {
     val memory = mutableMapOf<String, Int>()
-    
+
     fun run(vararg parameters: Pair<String, Int>) {
         parameters.forEach { p ->
             memory[p.first] = p.second
@@ -125,9 +131,9 @@ class Interpreter(val script: Script) {
             instructions.forEach { instruction ->
                 when (instruction) {
                     is Assign -> memory[instruction.varId] = instruction.expression.calculate()
-                    
+
                     is Print -> println(instruction.expression.calculate())
-                    
+
                     is IfElse -> {
                         if (instruction.guard.calculate() != 0) {
                             executeInstructions(instruction.sequence)
@@ -145,15 +151,15 @@ class Interpreter(val script: Script) {
             }
         }
         executeInstructions(script.instructions)
-        
+
     }
     // Em vez de devolvere void, devolver qq coisa que propaga até um while.
-    
+
     fun Expression.calculate(): Int =
         when (this) {
             is Literal -> this.value
             is Variable -> memory[this.varId] ?: throw Exception("Value not declared")
-            is BinaryExpression ->  when(this.operator) {
+            is BinaryExpression -> when (this.operator) {
                 Operator.PLUS -> this.left.calculate() + this.right.calculate()
                 Operator.MINUS -> this.left.calculate() - this.right.calculate()
                 Operator.TIMES -> this.left.calculate() * this.right.calculate()
@@ -162,6 +168,7 @@ class Interpreter(val script: Script) {
                     if (right == 0) throw Exception("Division by zero")
                     this.left.calculate() / right
                 }
+
                 Operator.MOD -> this.left.calculate() % this.right.calculate()
                 Operator.LT -> if (this.left.calculate() < this.right.calculate()) 1 else 0
                 Operator.LTE -> if (this.left.calculate() <= this.right.calculate()) 1 else 0
