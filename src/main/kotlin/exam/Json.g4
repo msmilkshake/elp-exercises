@@ -8,19 +8,18 @@ jValue:
     | jArray
     | jObject;
 
-jArray: '[' (jValue ',')* jValue? ']';
+jField: name ':' jValue;
+jObject: '{' (jField (',' jField)*)? '}';
+jArray: '[' (jValue (',' jValue)*)? ']';
 
 jNumber: INT | FLOAT;
-jString: STR | FIELD;
+jString: STR;
 jBoolean: TRUE | FALSE;
 jNull: NULL;
 
-field: FIELD;
+name: STR;
 
-jField: field ':' jValue;
-jObject: '{' (jField ',')* jField? '}';
 
-FIELD: '"' [a-zA-Z0-9]+ '"';
 STR: '"' ~('"'|'\n'|'\r')* '"';
 TRUE: 'true';
 FALSE: 'false';
@@ -28,5 +27,4 @@ INT: [0-9]+;
 FLOAT: ([0-9]+)?'.'[0-9]+;
 NULL: 'null';
 
-NEWLINE: ('\r'? '\n')+;
-SPACE: ' '+ -> skip;
+SPACE: (' '|'\n'|'\r')+ -> skip;

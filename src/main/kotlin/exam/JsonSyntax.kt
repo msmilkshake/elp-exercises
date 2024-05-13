@@ -3,9 +3,6 @@ package exam
 import exam.JsonParser.*
 import org.antlr.v4.runtime.CharStreams
 import org.antlr.v4.runtime.CommonTokenStream
-import week3.csv.CsvLexer
-import week3.csv.CsvParser
-import week3.csv.toAst
 
 fun JValueContext.toAst(): JValue =
     when {
@@ -32,7 +29,7 @@ fun JNullContext.toAst(): JNull =
 
 fun JObjectContext.toAst(): JObject =
     JObject(jField().map {
-        JField(it.field().text, it.jValue().toAst())
+        JField(it.name().text, it.jValue().toAst())
     })
 
 fun JArrayContext.toAst(): JArray =

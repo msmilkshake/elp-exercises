@@ -18,6 +18,26 @@ public interface JsonListener extends ParseTreeListener {
 	 */
 	void exitJValue(JsonParser.JValueContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JsonParser#jField}.
+	 * @param ctx the parse tree
+	 */
+	void enterJField(JsonParser.JFieldContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JsonParser#jField}.
+	 * @param ctx the parse tree
+	 */
+	void exitJField(JsonParser.JFieldContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JsonParser#jObject}.
+	 * @param ctx the parse tree
+	 */
+	void enterJObject(JsonParser.JObjectContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JsonParser#jObject}.
+	 * @param ctx the parse tree
+	 */
+	void exitJObject(JsonParser.JObjectContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link JsonParser#jArray}.
 	 * @param ctx the parse tree
 	 */
@@ -68,33 +88,13 @@ public interface JsonListener extends ParseTreeListener {
 	 */
 	void exitJNull(JsonParser.JNullContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JsonParser#field}.
+	 * Enter a parse tree produced by {@link JsonParser#name}.
 	 * @param ctx the parse tree
 	 */
-	void enterField(JsonParser.FieldContext ctx);
+	void enterName(JsonParser.NameContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JsonParser#field}.
+	 * Exit a parse tree produced by {@link JsonParser#name}.
 	 * @param ctx the parse tree
 	 */
-	void exitField(JsonParser.FieldContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link JsonParser#jField}.
-	 * @param ctx the parse tree
-	 */
-	void enterJField(JsonParser.JFieldContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link JsonParser#jField}.
-	 * @param ctx the parse tree
-	 */
-	void exitJField(JsonParser.JFieldContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link JsonParser#jObject}.
-	 * @param ctx the parse tree
-	 */
-	void enterJObject(JsonParser.JObjectContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link JsonParser#jObject}.
-	 * @param ctx the parse tree
-	 */
-	void exitJObject(JsonParser.JObjectContext ctx);
+	void exitName(JsonParser.NameContext ctx);
 }
