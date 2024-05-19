@@ -2,11 +2,10 @@ package exam
 
 data class Script(
     val instructions: List<Instruction>,
-    val parameters: List<String>
+    val args: List<String>
 ) {
     fun validate(): List<VarError> {
         val errors: MutableList<VarError> = mutableListOf()
-        val varIds: MutableSet<String> = parameters.toMutableSet()
         return errors
     }
 }
@@ -18,15 +17,26 @@ data class VarError(
 
 sealed interface Instruction {}
 
+
+sealed interface LoadArg {}
+
+data class Filename(
+    val value: String
+) : LoadArg
+
+data class Arg(
+    val number: Int
+) : LoadArg
+
 data class Load(
-    val file: String,
+    val file: LoadArg,
     val varId: String
-): Instruction
+) : Instruction
 
 data class Save(
     val varId: String,
     val file: String
-): Instruction
+) : Instruction
 
 
 enum class Aggregator {
@@ -42,7 +52,7 @@ sealed interface QJValue {}
 
 data class QJField(val name: String, val value: JValue) {}
 
-data class QJObject(val fields: List<JField>): JValue {
+data class QJObject(val fields: List<JField>) : JValue {
     fun validateNames() {
         val fieldNames: MutableSet<String> = mutableSetOf()
         fields.forEach {
@@ -54,7 +64,7 @@ data class QJObject(val fields: List<JField>): JValue {
     }
 }
 
-data class QJArray(val elements: List<JValue>): JValue {
+data class QJArray(val elements: List<JValue>) : JValue {
     fun validateTypes() {
         if (elements.isNotEmpty()) {
             for (element in elements.subList(1, elements.size - 1)) {
@@ -68,10 +78,10 @@ data class QJArray(val elements: List<JValue>): JValue {
 
 data object QJNull : JValue {}
 
-data class QJBoolean(val value: Boolean): JValue {}
+data class QJBoolean(val value: Boolean) : JValue {}
 
-data class QJNumber(val value: Number): JValue {}
+data class QJNumber(val value: Number) : JValue {}
 
-data class QJString(val value: String): JValue {}
+data class QJString(val value: String) : JValue {}
 
-data class QJVar(val id: String): JValue {}
+data class QJVar(val id: String) : JValue {}

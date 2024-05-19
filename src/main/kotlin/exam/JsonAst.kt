@@ -2,29 +2,51 @@ package exam
 
 sealed interface JValue {}
 
-data class JField(val name: String, val value: JValue) {}
+data class JField(val name: String, val value: JValue) {
+    fun toString(indent: String): String =
+        "$name: ${(value as? JObject)?.toString(indent) ?: (value as? JArray)?.toString(indent) ?: value}"
 
-data class JObject(val fields: List<JField>): JValue {
+    override fun toString(): String = toString("")
+}
+
+data class JObject(val fields: List<JField>) : JValue {
     fun validateNames() {
         val fieldNames: MutableSet<String> = mutableSetOf()
-        fields.forEach { 
+        fields.forEach {
             if (fieldNames.contains(it.name)) {
                 throw Exception("Object has repeated name: ${it.name}")
             }
             fieldNames.add(it.name)
         }
     }
+
+    fun toString(indent: String): String {
+        val jsonFields = fields.joinToString(",\n") {
+            "$indent  ${it.toString("$indent  ")}"
+        }
+        return "{\n$jsonFields\n$indent}"
+    }
+
+    override fun toString(): String = toString("")
 }
 
-data object JNull : JValue {}
+data object JNull : JValue {
+    override fun toString(): String = "null"
+}
 
-data class JBoolean(val value: Boolean): JValue {}
+data class JBoolean(val value: Boolean) : JValue {
+    override fun toString(): String = value.toString()
+}
 
-data class JNumber(val value: Number): JValue {}
+data class JNumber(val value: Number) : JValue {
+    override fun toString(): String = value.toString()
+}
 
-data class JString(val value: String): JValue {}
+data class JString(val value: String) : JValue {
+    override fun toString(): String = value
+}
 
-data class JArray(val elements: List<JValue>): JValue {
+data class JArray(val elements: List<JValue>) : JValue {
     fun validateTypes() {
         if (elements.isNotEmpty()) {
             for (element in elements.subList(1, elements.size - 1)) {
@@ -34,4 +56,13 @@ data class JArray(val elements: List<JValue>): JValue {
             }
         }
     }
+
+    fun toString(indent: String): String {
+        val jsonElements = elements.joinToString(",\n") {
+            "$indent  ${(it as? JObject)?.toString("$indent  ") ?: (it as? JArray)?.toString("$indent  ") ?: it}"
+        }
+        return "[\n$jsonElements\n$indent]"
+    }
+
+    override fun toString(): String = toString("")
 }
