@@ -31,6 +31,14 @@ class Interpreter(scriptFilename: String) {
                 }
 
                 is Save -> TODO()
+                is Assign -> {
+                    when (val expr = instruction.expression) {
+                        is Accessor -> {
+                            val result = getFromMemory(expr.variable, expr.keys)
+                            memory[instruction.varId] = result
+                        }
+                    }
+                }
             }
         }
     }
@@ -50,6 +58,39 @@ class Interpreter(scriptFilename: String) {
         memory[varId] = json
         println("------- JSON ---------")
         println(json)
+    }
+
+    fun getFromMemory(varId: String, keys: List<Key>): JValue {
+        var value: JValue = memory[varId]
+            ?: throw Exception("Variable $varId doesn't exist in memory.")
+
+        var find = false
+
+        for (key in keys) {
+            value = when {
+                value is JObject -> value.fields.find { it.name.trim('"') == key.id }?.value
+                    ?: throw Exception("Key ${key.id} doesn't exist in variable $varId.")
+
+                value is JArray && find -> {
+                    find = false
+                    JArray(value.elements.flatMap {
+                        when (it) {
+                            is JObject -> it.fields.find { it.name.trim('"') == key.id }?.value?.let { listOf(it) }
+                                ?: listOf()
+
+                            else -> throw Exception("Cannot get a property ${key.id} on a non-object in array variable $varId.")
+                        }
+                    })
+                }
+
+                else -> throw Exception("Cannot get a property ${key.id} on a non-object variable $varId.")
+            }
+            if (key.isFinder) {
+                find = true;
+            }
+        }
+
+        return value
     }
 
     fun saveJson(filename: String, varId: String) {

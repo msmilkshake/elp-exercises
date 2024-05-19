@@ -101,6 +101,18 @@ public class JQLBaseListener implements JQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAccessor(JQLParser.AccessorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAccessor(JQLParser.AccessorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAggregator(JQLParser.AggregatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -113,13 +125,13 @@ public class JQLBaseListener implements JQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAccessor(JQLParser.AccessorContext ctx) { }
+	@Override public void enterKey(JQLParser.KeyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAccessor(JQLParser.AccessorContext ctx) { }
+	@Override public void exitKey(JQLParser.KeyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -137,109 +149,109 @@ public class JQLBaseListener implements JQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterJValue(JQLParser.JValueContext ctx) { }
+	@Override public void enterJqValue(JQLParser.JqValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitJValue(JQLParser.JValueContext ctx) { }
+	@Override public void exitJqValue(JQLParser.JqValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterJField(JQLParser.JFieldContext ctx) { }
+	@Override public void enterJqField(JQLParser.JqFieldContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitJField(JQLParser.JFieldContext ctx) { }
+	@Override public void exitJqField(JQLParser.JqFieldContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterJObject(JQLParser.JObjectContext ctx) { }
+	@Override public void enterJqObject(JQLParser.JqObjectContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitJObject(JQLParser.JObjectContext ctx) { }
+	@Override public void exitJqObject(JQLParser.JqObjectContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterJArray(JQLParser.JArrayContext ctx) { }
+	@Override public void enterJqArray(JQLParser.JqArrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitJArray(JQLParser.JArrayContext ctx) { }
+	@Override public void exitJqArray(JQLParser.JqArrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterJNumber(JQLParser.JNumberContext ctx) { }
+	@Override public void enterJqNumber(JQLParser.JqNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitJNumber(JQLParser.JNumberContext ctx) { }
+	@Override public void exitJqNumber(JQLParser.JqNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterJString(JQLParser.JStringContext ctx) { }
+	@Override public void enterJqString(JQLParser.JqStringContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitJString(JQLParser.JStringContext ctx) { }
+	@Override public void exitJqString(JQLParser.JqStringContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterJBoolean(JQLParser.JBooleanContext ctx) { }
+	@Override public void enterJqBoolean(JQLParser.JqBooleanContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitJBoolean(JQLParser.JBooleanContext ctx) { }
+	@Override public void exitJqBoolean(JQLParser.JqBooleanContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterJNull(JQLParser.JNullContext ctx) { }
+	@Override public void enterJqNull(JQLParser.JqNullContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitJNull(JQLParser.JNullContext ctx) { }
+	@Override public void exitJqNull(JQLParser.JqNullContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterJVar(JQLParser.JVarContext ctx) { }
+	@Override public void enterJqVar(JQLParser.JqVarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitJVar(JQLParser.JVarContext ctx) { }
+	@Override public void exitJqVar(JQLParser.JqVarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

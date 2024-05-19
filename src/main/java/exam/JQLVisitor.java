@@ -53,17 +53,23 @@ public interface JQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpression(JQLParser.ExpressionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JQLParser#accessor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAccessor(JQLParser.AccessorContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link JQLParser#aggregator}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAggregator(JQLParser.AggregatorContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JQLParser#accessor}.
+	 * Visit a parse tree produced by {@link JQLParser#key}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAccessor(JQLParser.AccessorContext ctx);
+	T visitKey(JQLParser.KeyContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JQLParser#finder}.
 	 * @param ctx the parse tree
@@ -71,59 +77,59 @@ public interface JQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFinder(JQLParser.FinderContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JQLParser#jValue}.
+	 * Visit a parse tree produced by {@link JQLParser#jqValue}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJValue(JQLParser.JValueContext ctx);
+	T visitJqValue(JQLParser.JqValueContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JQLParser#jField}.
+	 * Visit a parse tree produced by {@link JQLParser#jqField}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJField(JQLParser.JFieldContext ctx);
+	T visitJqField(JQLParser.JqFieldContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JQLParser#jObject}.
+	 * Visit a parse tree produced by {@link JQLParser#jqObject}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJObject(JQLParser.JObjectContext ctx);
+	T visitJqObject(JQLParser.JqObjectContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JQLParser#jArray}.
+	 * Visit a parse tree produced by {@link JQLParser#jqArray}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJArray(JQLParser.JArrayContext ctx);
+	T visitJqArray(JQLParser.JqArrayContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JQLParser#jNumber}.
+	 * Visit a parse tree produced by {@link JQLParser#jqNumber}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJNumber(JQLParser.JNumberContext ctx);
+	T visitJqNumber(JQLParser.JqNumberContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JQLParser#jString}.
+	 * Visit a parse tree produced by {@link JQLParser#jqString}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJString(JQLParser.JStringContext ctx);
+	T visitJqString(JQLParser.JqStringContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JQLParser#jBoolean}.
+	 * Visit a parse tree produced by {@link JQLParser#jqBoolean}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJBoolean(JQLParser.JBooleanContext ctx);
+	T visitJqBoolean(JQLParser.JqBooleanContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JQLParser#jNull}.
+	 * Visit a parse tree produced by {@link JQLParser#jqNull}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJNull(JQLParser.JNullContext ctx);
+	T visitJqNull(JQLParser.JqNullContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JQLParser#jVar}.
+	 * Visit a parse tree produced by {@link JQLParser#jqVar}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJVar(JQLParser.JVarContext ctx);
+	T visitJqVar(JQLParser.JqVarContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JQLParser#name}.
 	 * @param ctx the parse tree

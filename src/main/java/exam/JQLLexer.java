@@ -39,7 +39,7 @@ public class JQLLexer extends Lexer {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'load'", "'to'", "'save'", "'='", "'|'", "'.'", "'*'", "':'", 
+			null, "'load'", "'to'", "'save'", "'='", "'.'", "'|'", "'*'", "':'", 
 			"'{'", "','", "'}'", "'['", "']'", "'$'", null, null, null, "'true'", 
 			"'false'", null, null, "'null'"
 		};
@@ -169,7 +169,7 @@ public class JQLLexer extends Lexer {
 		"t\u0000\u000078\u0005o\u0000\u00008\u0004\u0001\u0000\u0000\u00009:\u0005"+
 		"s\u0000\u0000:;\u0005a\u0000\u0000;<\u0005v\u0000\u0000<=\u0005e\u0000"+
 		"\u0000=\u0006\u0001\u0000\u0000\u0000>?\u0005=\u0000\u0000?\b\u0001\u0000"+
-		"\u0000\u0000@A\u0005|\u0000\u0000A\n\u0001\u0000\u0000\u0000BC\u0005."+
+		"\u0000\u0000@A\u0005.\u0000\u0000A\n\u0001\u0000\u0000\u0000BC\u0005|"+
 		"\u0000\u0000C\f\u0001\u0000\u0000\u0000DE\u0005*\u0000\u0000E\u000e\u0001"+
 		"\u0000\u0000\u0000FG\u0005:\u0000\u0000G\u0010\u0001\u0000\u0000\u0000"+
 		"HI\u0005{\u0000\u0000I\u0012\u0001\u0000\u0000\u0000JK\u0005,\u0000\u0000"+

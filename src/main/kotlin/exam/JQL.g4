@@ -12,37 +12,33 @@ save: 'save' variable 'to' (arg | STR);
 assign:
     variable '=' expression;
     
-expression:(
-    | variable
-    | accessor
-    | finder
-    | jObject
-    )
-    (aggregator)?
-;
+    
+expression: (accessor | jqObject) aggregator?;
+
+accessor: variable ('.' key)*;
 
 aggregator: '|' AGGREGATORS;
-accessor: (variable | finder) '.' (accessor | variable | finder);
-finder: variable '*';
+key: ID finder?;
+finder: '*';
 
-jValue:
-    jString
-    | jNumber
-    | jBoolean
-    | jNull
-    | jArray
-    | jObject
-    | jVar;
+jqValue:
+    jqString
+    | jqNumber
+    | jqBoolean
+    | jqNull
+    | jqArray
+    | jqObject
+    | jqVar;
 
-jField: name ':' jValue;
-jObject: '{' NEWLINE* (jField (',' NEWLINE* jField)*)? NEWLINE* '}';
-jArray: '[' NEWLINE* (jValue (',' NEWLINE* jValue)*)? NEWLINE* ']';
+jqField: name ':' jqValue;
+jqObject: '{' NEWLINE* (jqField (',' NEWLINE* jqField)*)? NEWLINE* '}';
+jqArray: '[' NEWLINE* (jqValue (',' NEWLINE* jqValue)*)? NEWLINE* ']';
 
-jNumber: INT | FLOAT;
-jString: STR;
-jBoolean: TRUE | FALSE;
-jNull: NULL;
-jVar: variable;
+jqNumber: INT | FLOAT;
+jqString: STR;
+jqBoolean: TRUE | FALSE;
+jqNull: NULL;
+jqVar: variable;
 
 name: STR;
 

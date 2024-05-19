@@ -22,23 +22,24 @@ public class JQLParser extends Parser {
 		ID=17, TRUE=18, FALSE=19, INT=20, FLOAT=21, NULL=22, NEWLINE=23, SPACE=24;
 	public static final int
 		RULE_script = 0, RULE_sequence = 1, RULE_instruction = 2, RULE_load = 3, 
-		RULE_save = 4, RULE_assign = 5, RULE_expression = 6, RULE_aggregator = 7, 
-		RULE_accessor = 8, RULE_finder = 9, RULE_jValue = 10, RULE_jField = 11, 
-		RULE_jObject = 12, RULE_jArray = 13, RULE_jNumber = 14, RULE_jString = 15, 
-		RULE_jBoolean = 16, RULE_jNull = 17, RULE_jVar = 18, RULE_name = 19, RULE_arg = 20, 
-		RULE_variable = 21;
+		RULE_save = 4, RULE_assign = 5, RULE_expression = 6, RULE_accessor = 7, 
+		RULE_aggregator = 8, RULE_key = 9, RULE_finder = 10, RULE_jqValue = 11, 
+		RULE_jqField = 12, RULE_jqObject = 13, RULE_jqArray = 14, RULE_jqNumber = 15, 
+		RULE_jqString = 16, RULE_jqBoolean = 17, RULE_jqNull = 18, RULE_jqVar = 19, 
+		RULE_name = 20, RULE_arg = 21, RULE_variable = 22;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"script", "sequence", "instruction", "load", "save", "assign", "expression", 
-			"aggregator", "accessor", "finder", "jValue", "jField", "jObject", "jArray", 
-			"jNumber", "jString", "jBoolean", "jNull", "jVar", "name", "arg", "variable"
+			"accessor", "aggregator", "key", "finder", "jqValue", "jqField", "jqObject", 
+			"jqArray", "jqNumber", "jqString", "jqBoolean", "jqNull", "jqVar", "name", 
+			"arg", "variable"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'load'", "'to'", "'save'", "'='", "'|'", "'.'", "'*'", "':'", 
+			null, "'load'", "'to'", "'save'", "'='", "'.'", "'|'", "'*'", "':'", 
 			"'{'", "','", "'}'", "'['", "']'", "'$'", null, null, null, "'true'", 
 			"'false'", null, null, "'null'"
 		};
@@ -133,9 +134,9 @@ public class JQLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44);
+			setState(46);
 			sequence();
-			setState(45);
+			setState(47);
 			match(EOF);
 			}
 		}
@@ -189,37 +190,37 @@ public class JQLParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(55);
+			setState(57);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(47);
+					setState(49);
 					instruction();
-					setState(49); 
+					setState(51); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 					do {
 						{
 						{
-						setState(48);
+						setState(50);
 						match(NEWLINE);
 						}
 						}
-						setState(51); 
+						setState(53); 
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 					} while ( _la==NEWLINE );
 					}
 					} 
 				}
-				setState(57);
+				setState(59);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			}
-			setState(58);
+			setState(60);
 			instruction();
 			}
 		}
@@ -268,27 +269,27 @@ public class JQLParser extends Parser {
 		InstructionContext _localctx = new InstructionContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_instruction);
 		try {
-			setState(63);
+			setState(65);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__0:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(60);
+				setState(62);
 				load();
 				}
 				break;
 			case T__2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(61);
+				setState(63);
 				save();
 				}
 				break;
 			case ID:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(62);
+				setState(64);
 				assign();
 				}
 				break;
@@ -341,29 +342,29 @@ public class JQLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(65);
+			setState(67);
 			match(T__0);
-			setState(68);
+			setState(70);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__13:
 				{
-				setState(66);
+				setState(68);
 				arg();
 				}
 				break;
 			case STR:
 				{
-				setState(67);
+				setState(69);
 				match(STR);
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			setState(70);
+			setState(72);
 			match(T__1);
-			setState(71);
+			setState(73);
 			variable();
 			}
 		}
@@ -412,24 +413,24 @@ public class JQLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(73);
-			match(T__2);
-			setState(74);
-			variable();
 			setState(75);
+			match(T__2);
+			setState(76);
+			variable();
+			setState(77);
 			match(T__1);
-			setState(78);
+			setState(80);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__13:
 				{
-				setState(76);
+				setState(78);
 				arg();
 				}
 				break;
 			case STR:
 				{
-				setState(77);
+				setState(79);
 				match(STR);
 				}
 				break;
@@ -482,11 +483,11 @@ public class JQLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(80);
-			variable();
-			setState(81);
-			match(T__3);
 			setState(82);
+			variable();
+			setState(83);
+			match(T__3);
+			setState(84);
 			expression();
 			}
 		}
@@ -503,17 +504,11 @@ public class JQLParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ExpressionContext extends ParserRuleContext {
-		public VariableContext variable() {
-			return getRuleContext(VariableContext.class,0);
-		}
 		public AccessorContext accessor() {
 			return getRuleContext(AccessorContext.class,0);
 		}
-		public FinderContext finder() {
-			return getRuleContext(FinderContext.class,0);
-		}
-		public JObjectContext jObject() {
-			return getRuleContext(JObjectContext.class,0);
+		public JqObjectContext jqObject() {
+			return getRuleContext(JqObjectContext.class,0);
 		}
 		public AggregatorContext aggregator() {
 			return getRuleContext(AggregatorContext.class,0);
@@ -544,48 +539,102 @@ public class JQLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(89);
+			setState(88);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
-			case 1:
-				{
-				}
-				break;
-			case 2:
-				{
-				setState(85);
-				variable();
-				}
-				break;
-			case 3:
+			switch (_input.LA(1)) {
+			case ID:
 				{
 				setState(86);
 				accessor();
 				}
 				break;
-			case 4:
+			case T__8:
 				{
 				setState(87);
-				finder();
+				jqObject();
 				}
 				break;
-			case 5:
-				{
-				setState(88);
-				jObject();
-				}
-				break;
+			default:
+				throw new NoViableAltException(this);
 			}
-			setState(92);
+			setState(91);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==T__4) {
+			if (_la==T__5) {
 				{
-				setState(91);
+				setState(90);
 				aggregator();
 				}
 			}
 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class AccessorContext extends ParserRuleContext {
+		public VariableContext variable() {
+			return getRuleContext(VariableContext.class,0);
+		}
+		public List<KeyContext> key() {
+			return getRuleContexts(KeyContext.class);
+		}
+		public KeyContext key(int i) {
+			return getRuleContext(KeyContext.class,i);
+		}
+		public AccessorContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_accessor; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterAccessor(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitAccessor(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitAccessor(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final AccessorContext accessor() throws RecognitionException {
+		AccessorContext _localctx = new AccessorContext(_ctx, getState());
+		enterRule(_localctx, 14, RULE_accessor);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(93);
+			variable();
+			setState(98);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==T__4) {
+				{
+				{
+				setState(94);
+				match(T__4);
+				setState(95);
+				key();
+				}
+				}
+				setState(100);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -623,13 +672,13 @@ public class JQLParser extends Parser {
 
 	public final AggregatorContext aggregator() throws RecognitionException {
 		AggregatorContext _localctx = new AggregatorContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_aggregator);
+		enterRule(_localctx, 16, RULE_aggregator);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(94);
-			match(T__4);
-			setState(95);
+			setState(101);
+			match(T__5);
+			setState(102);
 			match(AGGREGATORS);
 			}
 		}
@@ -645,87 +694,49 @@ public class JQLParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class AccessorContext extends ParserRuleContext {
-		public List<VariableContext> variable() {
-			return getRuleContexts(VariableContext.class);
+	public static class KeyContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(JQLParser.ID, 0); }
+		public FinderContext finder() {
+			return getRuleContext(FinderContext.class,0);
 		}
-		public VariableContext variable(int i) {
-			return getRuleContext(VariableContext.class,i);
-		}
-		public List<FinderContext> finder() {
-			return getRuleContexts(FinderContext.class);
-		}
-		public FinderContext finder(int i) {
-			return getRuleContext(FinderContext.class,i);
-		}
-		public AccessorContext accessor() {
-			return getRuleContext(AccessorContext.class,0);
-		}
-		public AccessorContext(ParserRuleContext parent, int invokingState) {
+		public KeyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_accessor; }
+		@Override public int getRuleIndex() { return RULE_key; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterAccessor(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterKey(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitAccessor(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitKey(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitAccessor(this);
+			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitKey(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final AccessorContext accessor() throws RecognitionException {
-		AccessorContext _localctx = new AccessorContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_accessor);
+	public final KeyContext key() throws RecognitionException {
+		KeyContext _localctx = new KeyContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_key);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(99);
+			setState(104);
+			match(ID);
+			setState(106);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
-			case 1:
+			_la = _input.LA(1);
+			if (_la==T__6) {
 				{
-				setState(97);
-				variable();
-				}
-				break;
-			case 2:
-				{
-				setState(98);
+				setState(105);
 				finder();
 				}
-				break;
 			}
-			setState(101);
-			match(T__5);
-			setState(105);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
-			case 1:
-				{
-				setState(102);
-				accessor();
-				}
-				break;
-			case 2:
-				{
-				setState(103);
-				variable();
-				}
-				break;
-			case 3:
-				{
-				setState(104);
-				finder();
-				}
-				break;
-			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -741,9 +752,6 @@ public class JQLParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class FinderContext extends ParserRuleContext {
-		public VariableContext variable() {
-			return getRuleContext(VariableContext.class,0);
-		}
 		public FinderContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -765,12 +773,10 @@ public class JQLParser extends Parser {
 
 	public final FinderContext finder() throws RecognitionException {
 		FinderContext _localctx = new FinderContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_finder);
+		enterRule(_localctx, 20, RULE_finder);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(107);
-			variable();
 			setState(108);
 			match(T__6);
 			}
@@ -787,50 +793,50 @@ public class JQLParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class JValueContext extends ParserRuleContext {
-		public JStringContext jString() {
-			return getRuleContext(JStringContext.class,0);
+	public static class JqValueContext extends ParserRuleContext {
+		public JqStringContext jqString() {
+			return getRuleContext(JqStringContext.class,0);
 		}
-		public JNumberContext jNumber() {
-			return getRuleContext(JNumberContext.class,0);
+		public JqNumberContext jqNumber() {
+			return getRuleContext(JqNumberContext.class,0);
 		}
-		public JBooleanContext jBoolean() {
-			return getRuleContext(JBooleanContext.class,0);
+		public JqBooleanContext jqBoolean() {
+			return getRuleContext(JqBooleanContext.class,0);
 		}
-		public JNullContext jNull() {
-			return getRuleContext(JNullContext.class,0);
+		public JqNullContext jqNull() {
+			return getRuleContext(JqNullContext.class,0);
 		}
-		public JArrayContext jArray() {
-			return getRuleContext(JArrayContext.class,0);
+		public JqArrayContext jqArray() {
+			return getRuleContext(JqArrayContext.class,0);
 		}
-		public JObjectContext jObject() {
-			return getRuleContext(JObjectContext.class,0);
+		public JqObjectContext jqObject() {
+			return getRuleContext(JqObjectContext.class,0);
 		}
-		public JVarContext jVar() {
-			return getRuleContext(JVarContext.class,0);
+		public JqVarContext jqVar() {
+			return getRuleContext(JqVarContext.class,0);
 		}
-		public JValueContext(ParserRuleContext parent, int invokingState) {
+		public JqValueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_jValue; }
+		@Override public int getRuleIndex() { return RULE_jqValue; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJValue(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJqValue(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJValue(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJqValue(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJValue(this);
+			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJqValue(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final JValueContext jValue() throws RecognitionException {
-		JValueContext _localctx = new JValueContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_jValue);
+	public final JqValueContext jqValue() throws RecognitionException {
+		JqValueContext _localctx = new JqValueContext(_ctx, getState());
+		enterRule(_localctx, 22, RULE_jqValue);
 		try {
 			setState(117);
 			_errHandler.sync(this);
@@ -839,7 +845,7 @@ public class JQLParser extends Parser {
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(110);
-				jString();
+				jqString();
 				}
 				break;
 			case INT:
@@ -847,7 +853,7 @@ public class JQLParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(111);
-				jNumber();
+				jqNumber();
 				}
 				break;
 			case TRUE:
@@ -855,35 +861,35 @@ public class JQLParser extends Parser {
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(112);
-				jBoolean();
+				jqBoolean();
 				}
 				break;
 			case NULL:
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(113);
-				jNull();
+				jqNull();
 				}
 				break;
 			case T__11:
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(114);
-				jArray();
+				jqArray();
 				}
 				break;
 			case T__8:
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(115);
-				jObject();
+				jqObject();
 				}
 				break;
 			case ID:
 				enterOuterAlt(_localctx, 7);
 				{
 				setState(116);
-				jVar();
+				jqVar();
 				}
 				break;
 			default:
@@ -902,35 +908,35 @@ public class JQLParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class JFieldContext extends ParserRuleContext {
+	public static class JqFieldContext extends ParserRuleContext {
 		public NameContext name() {
 			return getRuleContext(NameContext.class,0);
 		}
-		public JValueContext jValue() {
-			return getRuleContext(JValueContext.class,0);
+		public JqValueContext jqValue() {
+			return getRuleContext(JqValueContext.class,0);
 		}
-		public JFieldContext(ParserRuleContext parent, int invokingState) {
+		public JqFieldContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_jField; }
+		@Override public int getRuleIndex() { return RULE_jqField; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJField(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJqField(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJField(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJqField(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJField(this);
+			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJqField(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final JFieldContext jField() throws RecognitionException {
-		JFieldContext _localctx = new JFieldContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_jField);
+	public final JqFieldContext jqField() throws RecognitionException {
+		JqFieldContext _localctx = new JqFieldContext(_ctx, getState());
+		enterRule(_localctx, 24, RULE_jqField);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -939,7 +945,7 @@ public class JQLParser extends Parser {
 			setState(120);
 			match(T__7);
 			setState(121);
-			jValue();
+			jqValue();
 			}
 		}
 		catch (RecognitionException re) {
@@ -954,39 +960,39 @@ public class JQLParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class JObjectContext extends ParserRuleContext {
+	public static class JqObjectContext extends ParserRuleContext {
 		public List<TerminalNode> NEWLINE() { return getTokens(JQLParser.NEWLINE); }
 		public TerminalNode NEWLINE(int i) {
 			return getToken(JQLParser.NEWLINE, i);
 		}
-		public List<JFieldContext> jField() {
-			return getRuleContexts(JFieldContext.class);
+		public List<JqFieldContext> jqField() {
+			return getRuleContexts(JqFieldContext.class);
 		}
-		public JFieldContext jField(int i) {
-			return getRuleContext(JFieldContext.class,i);
+		public JqFieldContext jqField(int i) {
+			return getRuleContext(JqFieldContext.class,i);
 		}
-		public JObjectContext(ParserRuleContext parent, int invokingState) {
+		public JqObjectContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_jObject; }
+		@Override public int getRuleIndex() { return RULE_jqObject; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJObject(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJqObject(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJObject(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJqObject(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJObject(this);
+			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJqObject(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final JObjectContext jObject() throws RecognitionException {
-		JObjectContext _localctx = new JObjectContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_jObject);
+	public final JqObjectContext jqObject() throws RecognitionException {
+		JqObjectContext _localctx = new JqObjectContext(_ctx, getState());
+		enterRule(_localctx, 26, RULE_jqObject);
 		int _la;
 		try {
 			int _alt;
@@ -1016,7 +1022,7 @@ public class JQLParser extends Parser {
 			if (_la==STR) {
 				{
 				setState(130);
-				jField();
+				jqField();
 				setState(141);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
@@ -1040,7 +1046,7 @@ public class JQLParser extends Parser {
 						_la = _input.LA(1);
 					}
 					setState(138);
-					jField();
+					jqField();
 					}
 					}
 					setState(143);
@@ -1080,39 +1086,39 @@ public class JQLParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class JArrayContext extends ParserRuleContext {
+	public static class JqArrayContext extends ParserRuleContext {
 		public List<TerminalNode> NEWLINE() { return getTokens(JQLParser.NEWLINE); }
 		public TerminalNode NEWLINE(int i) {
 			return getToken(JQLParser.NEWLINE, i);
 		}
-		public List<JValueContext> jValue() {
-			return getRuleContexts(JValueContext.class);
+		public List<JqValueContext> jqValue() {
+			return getRuleContexts(JqValueContext.class);
 		}
-		public JValueContext jValue(int i) {
-			return getRuleContext(JValueContext.class,i);
+		public JqValueContext jqValue(int i) {
+			return getRuleContext(JqValueContext.class,i);
 		}
-		public JArrayContext(ParserRuleContext parent, int invokingState) {
+		public JqArrayContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_jArray; }
+		@Override public int getRuleIndex() { return RULE_jqArray; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJArray(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJqArray(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJArray(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJqArray(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJArray(this);
+			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJqArray(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final JArrayContext jArray() throws RecognitionException {
-		JArrayContext _localctx = new JArrayContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_jArray);
+	public final JqArrayContext jqArray() throws RecognitionException {
+		JqArrayContext _localctx = new JqArrayContext(_ctx, getState());
+		enterRule(_localctx, 28, RULE_jqArray);
 		int _la;
 		try {
 			int _alt;
@@ -1142,7 +1148,7 @@ public class JQLParser extends Parser {
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 8294912L) != 0)) {
 				{
 				setState(161);
-				jValue();
+				jqValue();
 				setState(172);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
@@ -1166,7 +1172,7 @@ public class JQLParser extends Parser {
 						_la = _input.LA(1);
 					}
 					setState(169);
-					jValue();
+					jqValue();
 					}
 					}
 					setState(174);
@@ -1206,31 +1212,31 @@ public class JQLParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class JNumberContext extends ParserRuleContext {
+	public static class JqNumberContext extends ParserRuleContext {
 		public TerminalNode INT() { return getToken(JQLParser.INT, 0); }
 		public TerminalNode FLOAT() { return getToken(JQLParser.FLOAT, 0); }
-		public JNumberContext(ParserRuleContext parent, int invokingState) {
+		public JqNumberContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_jNumber; }
+		@Override public int getRuleIndex() { return RULE_jqNumber; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJNumber(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJqNumber(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJNumber(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJqNumber(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJNumber(this);
+			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJqNumber(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final JNumberContext jNumber() throws RecognitionException {
-		JNumberContext _localctx = new JNumberContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_jNumber);
+	public final JqNumberContext jqNumber() throws RecognitionException {
+		JqNumberContext _localctx = new JqNumberContext(_ctx, getState());
+		enterRule(_localctx, 30, RULE_jqNumber);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -1259,30 +1265,30 @@ public class JQLParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class JStringContext extends ParserRuleContext {
+	public static class JqStringContext extends ParserRuleContext {
 		public TerminalNode STR() { return getToken(JQLParser.STR, 0); }
-		public JStringContext(ParserRuleContext parent, int invokingState) {
+		public JqStringContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_jString; }
+		@Override public int getRuleIndex() { return RULE_jqString; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJString(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJqString(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJString(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJqString(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJString(this);
+			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJqString(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final JStringContext jString() throws RecognitionException {
-		JStringContext _localctx = new JStringContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_jString);
+	public final JqStringContext jqString() throws RecognitionException {
+		JqStringContext _localctx = new JqStringContext(_ctx, getState());
+		enterRule(_localctx, 32, RULE_jqString);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -1302,31 +1308,31 @@ public class JQLParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class JBooleanContext extends ParserRuleContext {
+	public static class JqBooleanContext extends ParserRuleContext {
 		public TerminalNode TRUE() { return getToken(JQLParser.TRUE, 0); }
 		public TerminalNode FALSE() { return getToken(JQLParser.FALSE, 0); }
-		public JBooleanContext(ParserRuleContext parent, int invokingState) {
+		public JqBooleanContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_jBoolean; }
+		@Override public int getRuleIndex() { return RULE_jqBoolean; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJBoolean(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJqBoolean(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJBoolean(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJqBoolean(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJBoolean(this);
+			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJqBoolean(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final JBooleanContext jBoolean() throws RecognitionException {
-		JBooleanContext _localctx = new JBooleanContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_jBoolean);
+	public final JqBooleanContext jqBoolean() throws RecognitionException {
+		JqBooleanContext _localctx = new JqBooleanContext(_ctx, getState());
+		enterRule(_localctx, 34, RULE_jqBoolean);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -1355,30 +1361,30 @@ public class JQLParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class JNullContext extends ParserRuleContext {
+	public static class JqNullContext extends ParserRuleContext {
 		public TerminalNode NULL() { return getToken(JQLParser.NULL, 0); }
-		public JNullContext(ParserRuleContext parent, int invokingState) {
+		public JqNullContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_jNull; }
+		@Override public int getRuleIndex() { return RULE_jqNull; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJNull(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJqNull(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJNull(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJqNull(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJNull(this);
+			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJqNull(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final JNullContext jNull() throws RecognitionException {
-		JNullContext _localctx = new JNullContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_jNull);
+	public final JqNullContext jqNull() throws RecognitionException {
+		JqNullContext _localctx = new JqNullContext(_ctx, getState());
+		enterRule(_localctx, 36, RULE_jqNull);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -1398,32 +1404,32 @@ public class JQLParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class JVarContext extends ParserRuleContext {
+	public static class JqVarContext extends ParserRuleContext {
 		public VariableContext variable() {
 			return getRuleContext(VariableContext.class,0);
 		}
-		public JVarContext(ParserRuleContext parent, int invokingState) {
+		public JqVarContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_jVar; }
+		@Override public int getRuleIndex() { return RULE_jqVar; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJVar(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).enterJqVar(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJVar(this);
+			if ( listener instanceof JQLListener ) ((JQLListener)listener).exitJqVar(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJVar(this);
+			if ( visitor instanceof JQLVisitor ) return ((JQLVisitor<? extends T>)visitor).visitJqVar(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final JVarContext jVar() throws RecognitionException {
-		JVarContext _localctx = new JVarContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_jVar);
+	public final JqVarContext jqVar() throws RecognitionException {
+		JqVarContext _localctx = new JqVarContext(_ctx, getState());
+		enterRule(_localctx, 38, RULE_jqVar);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -1466,7 +1472,7 @@ public class JQLParser extends Parser {
 
 	public final NameContext name() throws RecognitionException {
 		NameContext _localctx = new NameContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_name);
+		enterRule(_localctx, 40, RULE_name);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -1509,7 +1515,7 @@ public class JQLParser extends Parser {
 
 	public final ArgContext arg() throws RecognitionException {
 		ArgContext _localctx = new ArgContext(_ctx, getState());
-		enterRule(_localctx, 40, RULE_arg);
+		enterRule(_localctx, 42, RULE_arg);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -1554,7 +1560,7 @@ public class JQLParser extends Parser {
 
 	public final VariableContext variable() throws RecognitionException {
 		VariableContext _localctx = new VariableContext(_ctx, getState());
-		enterRule(_localctx, 42, RULE_variable);
+		enterRule(_localctx, 44, RULE_variable);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -1581,119 +1587,119 @@ public class JQLParser extends Parser {
 		"\u0002\f\u0007\f\u0002\r\u0007\r\u0002\u000e\u0007\u000e\u0002\u000f\u0007"+
 		"\u000f\u0002\u0010\u0007\u0010\u0002\u0011\u0007\u0011\u0002\u0012\u0007"+
 		"\u0012\u0002\u0013\u0007\u0013\u0002\u0014\u0007\u0014\u0002\u0015\u0007"+
-		"\u0015\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0004"+
-		"\u00012\b\u0001\u000b\u0001\f\u00013\u0005\u00016\b\u0001\n\u0001\f\u0001"+
-		"9\t\u0001\u0001\u0001\u0001\u0001\u0001\u0002\u0001\u0002\u0001\u0002"+
-		"\u0003\u0002@\b\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0003\u0003"+
-		"E\b\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0004\u0001\u0004"+
-		"\u0001\u0004\u0001\u0004\u0001\u0004\u0003\u0004O\b\u0004\u0001\u0005"+
-		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0006\u0001\u0006\u0001\u0006"+
-		"\u0001\u0006\u0001\u0006\u0003\u0006Z\b\u0006\u0001\u0006\u0003\u0006"+
-		"]\b\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0001\b\u0001\b\u0003\b"+
-		"d\b\b\u0001\b\u0001\b\u0001\b\u0001\b\u0003\bj\b\b\u0001\t\u0001\t\u0001"+
-		"\t\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0003\nv\b"+
-		"\n\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\f\u0001\f\u0005"+
-		"\f~\b\f\n\f\f\f\u0081\t\f\u0001\f\u0001\f\u0001\f\u0005\f\u0086\b\f\n"+
-		"\f\f\f\u0089\t\f\u0001\f\u0005\f\u008c\b\f\n\f\f\f\u008f\t\f\u0003\f\u0091"+
-		"\b\f\u0001\f\u0005\f\u0094\b\f\n\f\f\f\u0097\t\f\u0001\f\u0001\f\u0001"+
-		"\r\u0001\r\u0005\r\u009d\b\r\n\r\f\r\u00a0\t\r\u0001\r\u0001\r\u0001\r"+
-		"\u0005\r\u00a5\b\r\n\r\f\r\u00a8\t\r\u0001\r\u0005\r\u00ab\b\r\n\r\f\r"+
-		"\u00ae\t\r\u0003\r\u00b0\b\r\u0001\r\u0005\r\u00b3\b\r\n\r\f\r\u00b6\t"+
-		"\r\u0001\r\u0001\r\u0001\u000e\u0001\u000e\u0001\u000f\u0001\u000f\u0001"+
-		"\u0010\u0001\u0010\u0001\u0011\u0001\u0011\u0001\u0012\u0001\u0012\u0001"+
-		"\u0013\u0001\u0013\u0001\u0014\u0001\u0014\u0001\u0014\u0001\u0015\u0001"+
-		"\u0015\u0001\u0015\u0000\u0000\u0016\u0000\u0002\u0004\u0006\b\n\f\u000e"+
-		"\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e \"$&(*\u0000\u0002\u0001"+
-		"\u0000\u0014\u0015\u0001\u0000\u0012\u0013\u00d2\u0000,\u0001\u0000\u0000"+
-		"\u0000\u00027\u0001\u0000\u0000\u0000\u0004?\u0001\u0000\u0000\u0000\u0006"+
-		"A\u0001\u0000\u0000\u0000\bI\u0001\u0000\u0000\u0000\nP\u0001\u0000\u0000"+
-		"\u0000\fY\u0001\u0000\u0000\u0000\u000e^\u0001\u0000\u0000\u0000\u0010"+
-		"c\u0001\u0000\u0000\u0000\u0012k\u0001\u0000\u0000\u0000\u0014u\u0001"+
-		"\u0000\u0000\u0000\u0016w\u0001\u0000\u0000\u0000\u0018{\u0001\u0000\u0000"+
-		"\u0000\u001a\u009a\u0001\u0000\u0000\u0000\u001c\u00b9\u0001\u0000\u0000"+
-		"\u0000\u001e\u00bb\u0001\u0000\u0000\u0000 \u00bd\u0001\u0000\u0000\u0000"+
-		"\"\u00bf\u0001\u0000\u0000\u0000$\u00c1\u0001\u0000\u0000\u0000&\u00c3"+
-		"\u0001\u0000\u0000\u0000(\u00c5\u0001\u0000\u0000\u0000*\u00c8\u0001\u0000"+
-		"\u0000\u0000,-\u0003\u0002\u0001\u0000-.\u0005\u0000\u0000\u0001.\u0001"+
-		"\u0001\u0000\u0000\u0000/1\u0003\u0004\u0002\u000002\u0005\u0017\u0000"+
-		"\u000010\u0001\u0000\u0000\u000023\u0001\u0000\u0000\u000031\u0001\u0000"+
-		"\u0000\u000034\u0001\u0000\u0000\u000046\u0001\u0000\u0000\u00005/\u0001"+
-		"\u0000\u0000\u000069\u0001\u0000\u0000\u000075\u0001\u0000\u0000\u0000"+
-		"78\u0001\u0000\u0000\u00008:\u0001\u0000\u0000\u000097\u0001\u0000\u0000"+
-		"\u0000:;\u0003\u0004\u0002\u0000;\u0003\u0001\u0000\u0000\u0000<@\u0003"+
-		"\u0006\u0003\u0000=@\u0003\b\u0004\u0000>@\u0003\n\u0005\u0000?<\u0001"+
-		"\u0000\u0000\u0000?=\u0001\u0000\u0000\u0000?>\u0001\u0000\u0000\u0000"+
-		"@\u0005\u0001\u0000\u0000\u0000AD\u0005\u0001\u0000\u0000BE\u0003(\u0014"+
-		"\u0000CE\u0005\u000f\u0000\u0000DB\u0001\u0000\u0000\u0000DC\u0001\u0000"+
-		"\u0000\u0000EF\u0001\u0000\u0000\u0000FG\u0005\u0002\u0000\u0000GH\u0003"+
-		"*\u0015\u0000H\u0007\u0001\u0000\u0000\u0000IJ\u0005\u0003\u0000\u0000"+
-		"JK\u0003*\u0015\u0000KN\u0005\u0002\u0000\u0000LO\u0003(\u0014\u0000M"+
-		"O\u0005\u000f\u0000\u0000NL\u0001\u0000\u0000\u0000NM\u0001\u0000\u0000"+
-		"\u0000O\t\u0001\u0000\u0000\u0000PQ\u0003*\u0015\u0000QR\u0005\u0004\u0000"+
-		"\u0000RS\u0003\f\u0006\u0000S\u000b\u0001\u0000\u0000\u0000TZ\u0001\u0000"+
-		"\u0000\u0000UZ\u0003*\u0015\u0000VZ\u0003\u0010\b\u0000WZ\u0003\u0012"+
-		"\t\u0000XZ\u0003\u0018\f\u0000YT\u0001\u0000\u0000\u0000YU\u0001\u0000"+
-		"\u0000\u0000YV\u0001\u0000\u0000\u0000YW\u0001\u0000\u0000\u0000YX\u0001"+
-		"\u0000\u0000\u0000Z\\\u0001\u0000\u0000\u0000[]\u0003\u000e\u0007\u0000"+
-		"\\[\u0001\u0000\u0000\u0000\\]\u0001\u0000\u0000\u0000]\r\u0001\u0000"+
-		"\u0000\u0000^_\u0005\u0005\u0000\u0000_`\u0005\u0010\u0000\u0000`\u000f"+
-		"\u0001\u0000\u0000\u0000ad\u0003*\u0015\u0000bd\u0003\u0012\t\u0000ca"+
-		"\u0001\u0000\u0000\u0000cb\u0001\u0000\u0000\u0000de\u0001\u0000\u0000"+
-		"\u0000ei\u0005\u0006\u0000\u0000fj\u0003\u0010\b\u0000gj\u0003*\u0015"+
-		"\u0000hj\u0003\u0012\t\u0000if\u0001\u0000\u0000\u0000ig\u0001\u0000\u0000"+
-		"\u0000ih\u0001\u0000\u0000\u0000j\u0011\u0001\u0000\u0000\u0000kl\u0003"+
-		"*\u0015\u0000lm\u0005\u0007\u0000\u0000m\u0013\u0001\u0000\u0000\u0000"+
-		"nv\u0003\u001e\u000f\u0000ov\u0003\u001c\u000e\u0000pv\u0003 \u0010\u0000"+
-		"qv\u0003\"\u0011\u0000rv\u0003\u001a\r\u0000sv\u0003\u0018\f\u0000tv\u0003"+
-		"$\u0012\u0000un\u0001\u0000\u0000\u0000uo\u0001\u0000\u0000\u0000up\u0001"+
-		"\u0000\u0000\u0000uq\u0001\u0000\u0000\u0000ur\u0001\u0000\u0000\u0000"+
-		"us\u0001\u0000\u0000\u0000ut\u0001\u0000\u0000\u0000v\u0015\u0001\u0000"+
-		"\u0000\u0000wx\u0003&\u0013\u0000xy\u0005\b\u0000\u0000yz\u0003\u0014"+
-		"\n\u0000z\u0017\u0001\u0000\u0000\u0000{\u007f\u0005\t\u0000\u0000|~\u0005"+
-		"\u0017\u0000\u0000}|\u0001\u0000\u0000\u0000~\u0081\u0001\u0000\u0000"+
-		"\u0000\u007f}\u0001\u0000\u0000\u0000\u007f\u0080\u0001\u0000\u0000\u0000"+
-		"\u0080\u0090\u0001\u0000\u0000\u0000\u0081\u007f\u0001\u0000\u0000\u0000"+
-		"\u0082\u008d\u0003\u0016\u000b\u0000\u0083\u0087\u0005\n\u0000\u0000\u0084"+
-		"\u0086\u0005\u0017\u0000\u0000\u0085\u0084\u0001\u0000\u0000\u0000\u0086"+
-		"\u0089\u0001\u0000\u0000\u0000\u0087\u0085\u0001\u0000\u0000\u0000\u0087"+
-		"\u0088\u0001\u0000\u0000\u0000\u0088\u008a\u0001\u0000\u0000\u0000\u0089"+
-		"\u0087\u0001\u0000\u0000\u0000\u008a\u008c\u0003\u0016\u000b\u0000\u008b"+
-		"\u0083\u0001\u0000\u0000\u0000\u008c\u008f\u0001\u0000\u0000\u0000\u008d"+
-		"\u008b\u0001\u0000\u0000\u0000\u008d\u008e\u0001\u0000\u0000\u0000\u008e"+
-		"\u0091\u0001\u0000\u0000\u0000\u008f\u008d\u0001\u0000\u0000\u0000\u0090"+
-		"\u0082\u0001\u0000\u0000\u0000\u0090\u0091\u0001\u0000\u0000\u0000\u0091"+
-		"\u0095\u0001\u0000\u0000\u0000\u0092\u0094\u0005\u0017\u0000\u0000\u0093"+
-		"\u0092\u0001\u0000\u0000\u0000\u0094\u0097\u0001\u0000\u0000\u0000\u0095"+
-		"\u0093\u0001\u0000\u0000\u0000\u0095\u0096\u0001\u0000\u0000\u0000\u0096"+
-		"\u0098\u0001\u0000\u0000\u0000\u0097\u0095\u0001\u0000\u0000\u0000\u0098"+
-		"\u0099\u0005\u000b\u0000\u0000\u0099\u0019\u0001\u0000\u0000\u0000\u009a"+
-		"\u009e\u0005\f\u0000\u0000\u009b\u009d\u0005\u0017\u0000\u0000\u009c\u009b"+
-		"\u0001\u0000\u0000\u0000\u009d\u00a0\u0001\u0000\u0000\u0000\u009e\u009c"+
-		"\u0001\u0000\u0000\u0000\u009e\u009f\u0001\u0000\u0000\u0000\u009f\u00af"+
-		"\u0001\u0000\u0000\u0000\u00a0\u009e\u0001\u0000\u0000\u0000\u00a1\u00ac"+
-		"\u0003\u0014\n\u0000\u00a2\u00a6\u0005\n\u0000\u0000\u00a3\u00a5\u0005"+
-		"\u0017\u0000\u0000\u00a4\u00a3\u0001\u0000\u0000\u0000\u00a5\u00a8\u0001"+
-		"\u0000\u0000\u0000\u00a6\u00a4\u0001\u0000\u0000\u0000\u00a6\u00a7\u0001"+
-		"\u0000\u0000\u0000\u00a7\u00a9\u0001\u0000\u0000\u0000\u00a8\u00a6\u0001"+
-		"\u0000\u0000\u0000\u00a9\u00ab\u0003\u0014\n\u0000\u00aa\u00a2\u0001\u0000"+
-		"\u0000\u0000\u00ab\u00ae\u0001\u0000\u0000\u0000\u00ac\u00aa\u0001\u0000"+
-		"\u0000\u0000\u00ac\u00ad\u0001\u0000\u0000\u0000\u00ad\u00b0\u0001\u0000"+
-		"\u0000\u0000\u00ae\u00ac\u0001\u0000\u0000\u0000\u00af\u00a1\u0001\u0000"+
-		"\u0000\u0000\u00af\u00b0\u0001\u0000\u0000\u0000\u00b0\u00b4\u0001\u0000"+
-		"\u0000\u0000\u00b1\u00b3\u0005\u0017\u0000\u0000\u00b2\u00b1\u0001\u0000"+
-		"\u0000\u0000\u00b3\u00b6\u0001\u0000\u0000\u0000\u00b4\u00b2\u0001\u0000"+
-		"\u0000\u0000\u00b4\u00b5\u0001\u0000\u0000\u0000\u00b5\u00b7\u0001\u0000"+
-		"\u0000\u0000\u00b6\u00b4\u0001\u0000\u0000\u0000\u00b7\u00b8\u0005\r\u0000"+
-		"\u0000\u00b8\u001b\u0001\u0000\u0000\u0000\u00b9\u00ba\u0007\u0000\u0000"+
-		"\u0000\u00ba\u001d\u0001\u0000\u0000\u0000\u00bb\u00bc\u0005\u000f\u0000"+
-		"\u0000\u00bc\u001f\u0001\u0000\u0000\u0000\u00bd\u00be\u0007\u0001\u0000"+
-		"\u0000\u00be!\u0001\u0000\u0000\u0000\u00bf\u00c0\u0005\u0016\u0000\u0000"+
-		"\u00c0#\u0001\u0000\u0000\u0000\u00c1\u00c2\u0003*\u0015\u0000\u00c2%"+
-		"\u0001\u0000\u0000\u0000\u00c3\u00c4\u0005\u000f\u0000\u0000\u00c4\'\u0001"+
-		"\u0000\u0000\u0000\u00c5\u00c6\u0005\u000e\u0000\u0000\u00c6\u00c7\u0005"+
-		"\u0014\u0000\u0000\u00c7)\u0001\u0000\u0000\u0000\u00c8\u00c9\u0005\u0011"+
-		"\u0000\u0000\u00c9+\u0001\u0000\u0000\u0000\u001437?DNY\\ciu\u007f\u0087"+
-		"\u008d\u0090\u0095\u009e\u00a6\u00ac\u00af\u00b4";
+		"\u0015\u0002\u0016\u0007\u0016\u0001\u0000\u0001\u0000\u0001\u0000\u0001"+
+		"\u0001\u0001\u0001\u0004\u00014\b\u0001\u000b\u0001\f\u00015\u0005\u0001"+
+		"8\b\u0001\n\u0001\f\u0001;\t\u0001\u0001\u0001\u0001\u0001\u0001\u0002"+
+		"\u0001\u0002\u0001\u0002\u0003\u0002B\b\u0002\u0001\u0003\u0001\u0003"+
+		"\u0001\u0003\u0003\u0003G\b\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0003\u0004"+
+		"Q\b\u0004\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0006"+
+		"\u0001\u0006\u0003\u0006Y\b\u0006\u0001\u0006\u0003\u0006\\\b\u0006\u0001"+
+		"\u0007\u0001\u0007\u0001\u0007\u0005\u0007a\b\u0007\n\u0007\f\u0007d\t"+
+		"\u0007\u0001\b\u0001\b\u0001\b\u0001\t\u0001\t\u0003\tk\b\t\u0001\n\u0001"+
+		"\n\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b"+
+		"\u0001\u000b\u0003\u000bv\b\u000b\u0001\f\u0001\f\u0001\f\u0001\f\u0001"+
+		"\r\u0001\r\u0005\r~\b\r\n\r\f\r\u0081\t\r\u0001\r\u0001\r\u0001\r\u0005"+
+		"\r\u0086\b\r\n\r\f\r\u0089\t\r\u0001\r\u0005\r\u008c\b\r\n\r\f\r\u008f"+
+		"\t\r\u0003\r\u0091\b\r\u0001\r\u0005\r\u0094\b\r\n\r\f\r\u0097\t\r\u0001"+
+		"\r\u0001\r\u0001\u000e\u0001\u000e\u0005\u000e\u009d\b\u000e\n\u000e\f"+
+		"\u000e\u00a0\t\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0005\u000e\u00a5"+
+		"\b\u000e\n\u000e\f\u000e\u00a8\t\u000e\u0001\u000e\u0005\u000e\u00ab\b"+
+		"\u000e\n\u000e\f\u000e\u00ae\t\u000e\u0003\u000e\u00b0\b\u000e\u0001\u000e"+
+		"\u0005\u000e\u00b3\b\u000e\n\u000e\f\u000e\u00b6\t\u000e\u0001\u000e\u0001"+
+		"\u000e\u0001\u000f\u0001\u000f\u0001\u0010\u0001\u0010\u0001\u0011\u0001"+
+		"\u0011\u0001\u0012\u0001\u0012\u0001\u0013\u0001\u0013\u0001\u0014\u0001"+
+		"\u0014\u0001\u0015\u0001\u0015\u0001\u0015\u0001\u0016\u0001\u0016\u0001"+
+		"\u0016\u0000\u0000\u0017\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012"+
+		"\u0014\u0016\u0018\u001a\u001c\u001e \"$&(*,\u0000\u0002\u0001\u0000\u0014"+
+		"\u0015\u0001\u0000\u0012\u0013\u00cd\u0000.\u0001\u0000\u0000\u0000\u0002"+
+		"9\u0001\u0000\u0000\u0000\u0004A\u0001\u0000\u0000\u0000\u0006C\u0001"+
+		"\u0000\u0000\u0000\bK\u0001\u0000\u0000\u0000\nR\u0001\u0000\u0000\u0000"+
+		"\fX\u0001\u0000\u0000\u0000\u000e]\u0001\u0000\u0000\u0000\u0010e\u0001"+
+		"\u0000\u0000\u0000\u0012h\u0001\u0000\u0000\u0000\u0014l\u0001\u0000\u0000"+
+		"\u0000\u0016u\u0001\u0000\u0000\u0000\u0018w\u0001\u0000\u0000\u0000\u001a"+
+		"{\u0001\u0000\u0000\u0000\u001c\u009a\u0001\u0000\u0000\u0000\u001e\u00b9"+
+		"\u0001\u0000\u0000\u0000 \u00bb\u0001\u0000\u0000\u0000\"\u00bd\u0001"+
+		"\u0000\u0000\u0000$\u00bf\u0001\u0000\u0000\u0000&\u00c1\u0001\u0000\u0000"+
+		"\u0000(\u00c3\u0001\u0000\u0000\u0000*\u00c5\u0001\u0000\u0000\u0000,"+
+		"\u00c8\u0001\u0000\u0000\u0000./\u0003\u0002\u0001\u0000/0\u0005\u0000"+
+		"\u0000\u00010\u0001\u0001\u0000\u0000\u000013\u0003\u0004\u0002\u0000"+
+		"24\u0005\u0017\u0000\u000032\u0001\u0000\u0000\u000045\u0001\u0000\u0000"+
+		"\u000053\u0001\u0000\u0000\u000056\u0001\u0000\u0000\u000068\u0001\u0000"+
+		"\u0000\u000071\u0001\u0000\u0000\u00008;\u0001\u0000\u0000\u000097\u0001"+
+		"\u0000\u0000\u00009:\u0001\u0000\u0000\u0000:<\u0001\u0000\u0000\u0000"+
+		";9\u0001\u0000\u0000\u0000<=\u0003\u0004\u0002\u0000=\u0003\u0001\u0000"+
+		"\u0000\u0000>B\u0003\u0006\u0003\u0000?B\u0003\b\u0004\u0000@B\u0003\n"+
+		"\u0005\u0000A>\u0001\u0000\u0000\u0000A?\u0001\u0000\u0000\u0000A@\u0001"+
+		"\u0000\u0000\u0000B\u0005\u0001\u0000\u0000\u0000CF\u0005\u0001\u0000"+
+		"\u0000DG\u0003*\u0015\u0000EG\u0005\u000f\u0000\u0000FD\u0001\u0000\u0000"+
+		"\u0000FE\u0001\u0000\u0000\u0000GH\u0001\u0000\u0000\u0000HI\u0005\u0002"+
+		"\u0000\u0000IJ\u0003,\u0016\u0000J\u0007\u0001\u0000\u0000\u0000KL\u0005"+
+		"\u0003\u0000\u0000LM\u0003,\u0016\u0000MP\u0005\u0002\u0000\u0000NQ\u0003"+
+		"*\u0015\u0000OQ\u0005\u000f\u0000\u0000PN\u0001\u0000\u0000\u0000PO\u0001"+
+		"\u0000\u0000\u0000Q\t\u0001\u0000\u0000\u0000RS\u0003,\u0016\u0000ST\u0005"+
+		"\u0004\u0000\u0000TU\u0003\f\u0006\u0000U\u000b\u0001\u0000\u0000\u0000"+
+		"VY\u0003\u000e\u0007\u0000WY\u0003\u001a\r\u0000XV\u0001\u0000\u0000\u0000"+
+		"XW\u0001\u0000\u0000\u0000Y[\u0001\u0000\u0000\u0000Z\\\u0003\u0010\b"+
+		"\u0000[Z\u0001\u0000\u0000\u0000[\\\u0001\u0000\u0000\u0000\\\r\u0001"+
+		"\u0000\u0000\u0000]b\u0003,\u0016\u0000^_\u0005\u0005\u0000\u0000_a\u0003"+
+		"\u0012\t\u0000`^\u0001\u0000\u0000\u0000ad\u0001\u0000\u0000\u0000b`\u0001"+
+		"\u0000\u0000\u0000bc\u0001\u0000\u0000\u0000c\u000f\u0001\u0000\u0000"+
+		"\u0000db\u0001\u0000\u0000\u0000ef\u0005\u0006\u0000\u0000fg\u0005\u0010"+
+		"\u0000\u0000g\u0011\u0001\u0000\u0000\u0000hj\u0005\u0011\u0000\u0000"+
+		"ik\u0003\u0014\n\u0000ji\u0001\u0000\u0000\u0000jk\u0001\u0000\u0000\u0000"+
+		"k\u0013\u0001\u0000\u0000\u0000lm\u0005\u0007\u0000\u0000m\u0015\u0001"+
+		"\u0000\u0000\u0000nv\u0003 \u0010\u0000ov\u0003\u001e\u000f\u0000pv\u0003"+
+		"\"\u0011\u0000qv\u0003$\u0012\u0000rv\u0003\u001c\u000e\u0000sv\u0003"+
+		"\u001a\r\u0000tv\u0003&\u0013\u0000un\u0001\u0000\u0000\u0000uo\u0001"+
+		"\u0000\u0000\u0000up\u0001\u0000\u0000\u0000uq\u0001\u0000\u0000\u0000"+
+		"ur\u0001\u0000\u0000\u0000us\u0001\u0000\u0000\u0000ut\u0001\u0000\u0000"+
+		"\u0000v\u0017\u0001\u0000\u0000\u0000wx\u0003(\u0014\u0000xy\u0005\b\u0000"+
+		"\u0000yz\u0003\u0016\u000b\u0000z\u0019\u0001\u0000\u0000\u0000{\u007f"+
+		"\u0005\t\u0000\u0000|~\u0005\u0017\u0000\u0000}|\u0001\u0000\u0000\u0000"+
+		"~\u0081\u0001\u0000\u0000\u0000\u007f}\u0001\u0000\u0000\u0000\u007f\u0080"+
+		"\u0001\u0000\u0000\u0000\u0080\u0090\u0001\u0000\u0000\u0000\u0081\u007f"+
+		"\u0001\u0000\u0000\u0000\u0082\u008d\u0003\u0018\f\u0000\u0083\u0087\u0005"+
+		"\n\u0000\u0000\u0084\u0086\u0005\u0017\u0000\u0000\u0085\u0084\u0001\u0000"+
+		"\u0000\u0000\u0086\u0089\u0001\u0000\u0000\u0000\u0087\u0085\u0001\u0000"+
+		"\u0000\u0000\u0087\u0088\u0001\u0000\u0000\u0000\u0088\u008a\u0001\u0000"+
+		"\u0000\u0000\u0089\u0087\u0001\u0000\u0000\u0000\u008a\u008c\u0003\u0018"+
+		"\f\u0000\u008b\u0083\u0001\u0000\u0000\u0000\u008c\u008f\u0001\u0000\u0000"+
+		"\u0000\u008d\u008b\u0001\u0000\u0000\u0000\u008d\u008e\u0001\u0000\u0000"+
+		"\u0000\u008e\u0091\u0001\u0000\u0000\u0000\u008f\u008d\u0001\u0000\u0000"+
+		"\u0000\u0090\u0082\u0001\u0000\u0000\u0000\u0090\u0091\u0001\u0000\u0000"+
+		"\u0000\u0091\u0095\u0001\u0000\u0000\u0000\u0092\u0094\u0005\u0017\u0000"+
+		"\u0000\u0093\u0092\u0001\u0000\u0000\u0000\u0094\u0097\u0001\u0000\u0000"+
+		"\u0000\u0095\u0093\u0001\u0000\u0000\u0000\u0095\u0096\u0001\u0000\u0000"+
+		"\u0000\u0096\u0098\u0001\u0000\u0000\u0000\u0097\u0095\u0001\u0000\u0000"+
+		"\u0000\u0098\u0099\u0005\u000b\u0000\u0000\u0099\u001b\u0001\u0000\u0000"+
+		"\u0000\u009a\u009e\u0005\f\u0000\u0000\u009b\u009d\u0005\u0017\u0000\u0000"+
+		"\u009c\u009b\u0001\u0000\u0000\u0000\u009d\u00a0\u0001\u0000\u0000\u0000"+
+		"\u009e\u009c\u0001\u0000\u0000\u0000\u009e\u009f\u0001\u0000\u0000\u0000"+
+		"\u009f\u00af\u0001\u0000\u0000\u0000\u00a0\u009e\u0001\u0000\u0000\u0000"+
+		"\u00a1\u00ac\u0003\u0016\u000b\u0000\u00a2\u00a6\u0005\n\u0000\u0000\u00a3"+
+		"\u00a5\u0005\u0017\u0000\u0000\u00a4\u00a3\u0001\u0000\u0000\u0000\u00a5"+
+		"\u00a8\u0001\u0000\u0000\u0000\u00a6\u00a4\u0001\u0000\u0000\u0000\u00a6"+
+		"\u00a7\u0001\u0000\u0000\u0000\u00a7\u00a9\u0001\u0000\u0000\u0000\u00a8"+
+		"\u00a6\u0001\u0000\u0000\u0000\u00a9\u00ab\u0003\u0016\u000b\u0000\u00aa"+
+		"\u00a2\u0001\u0000\u0000\u0000\u00ab\u00ae\u0001\u0000\u0000\u0000\u00ac"+
+		"\u00aa\u0001\u0000\u0000\u0000\u00ac\u00ad\u0001\u0000\u0000\u0000\u00ad"+
+		"\u00b0\u0001\u0000\u0000\u0000\u00ae\u00ac\u0001\u0000\u0000\u0000\u00af"+
+		"\u00a1\u0001\u0000\u0000\u0000\u00af\u00b0\u0001\u0000\u0000\u0000\u00b0"+
+		"\u00b4\u0001\u0000\u0000\u0000\u00b1\u00b3\u0005\u0017\u0000\u0000\u00b2"+
+		"\u00b1\u0001\u0000\u0000\u0000\u00b3\u00b6\u0001\u0000\u0000\u0000\u00b4"+
+		"\u00b2\u0001\u0000\u0000\u0000\u00b4\u00b5\u0001\u0000\u0000\u0000\u00b5"+
+		"\u00b7\u0001\u0000\u0000\u0000\u00b6\u00b4\u0001\u0000\u0000\u0000\u00b7"+
+		"\u00b8\u0005\r\u0000\u0000\u00b8\u001d\u0001\u0000\u0000\u0000\u00b9\u00ba"+
+		"\u0007\u0000\u0000\u0000\u00ba\u001f\u0001\u0000\u0000\u0000\u00bb\u00bc"+
+		"\u0005\u000f\u0000\u0000\u00bc!\u0001\u0000\u0000\u0000\u00bd\u00be\u0007"+
+		"\u0001\u0000\u0000\u00be#\u0001\u0000\u0000\u0000\u00bf\u00c0\u0005\u0016"+
+		"\u0000\u0000\u00c0%\u0001\u0000\u0000\u0000\u00c1\u00c2\u0003,\u0016\u0000"+
+		"\u00c2\'\u0001\u0000\u0000\u0000\u00c3\u00c4\u0005\u000f\u0000\u0000\u00c4"+
+		")\u0001\u0000\u0000\u0000\u00c5\u00c6\u0005\u000e\u0000\u0000\u00c6\u00c7"+
+		"\u0005\u0014\u0000\u0000\u00c7+\u0001\u0000\u0000\u0000\u00c8\u00c9\u0005"+
+		"\u0011\u0000\u0000\u00c9-\u0001\u0000\u0000\u0000\u001459AFPX[bju\u007f"+
+		"\u0087\u008d\u0090\u0095\u009e\u00a6\u00ac\u00af\u00b4";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

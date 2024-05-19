@@ -78,6 +78,16 @@ public interface JQLListener extends ParseTreeListener {
 	 */
 	void exitExpression(JQLParser.ExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JQLParser#accessor}.
+	 * @param ctx the parse tree
+	 */
+	void enterAccessor(JQLParser.AccessorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JQLParser#accessor}.
+	 * @param ctx the parse tree
+	 */
+	void exitAccessor(JQLParser.AccessorContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link JQLParser#aggregator}.
 	 * @param ctx the parse tree
 	 */
@@ -88,15 +98,15 @@ public interface JQLListener extends ParseTreeListener {
 	 */
 	void exitAggregator(JQLParser.AggregatorContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JQLParser#accessor}.
+	 * Enter a parse tree produced by {@link JQLParser#key}.
 	 * @param ctx the parse tree
 	 */
-	void enterAccessor(JQLParser.AccessorContext ctx);
+	void enterKey(JQLParser.KeyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JQLParser#accessor}.
+	 * Exit a parse tree produced by {@link JQLParser#key}.
 	 * @param ctx the parse tree
 	 */
-	void exitAccessor(JQLParser.AccessorContext ctx);
+	void exitKey(JQLParser.KeyContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JQLParser#finder}.
 	 * @param ctx the parse tree
@@ -108,95 +118,95 @@ public interface JQLListener extends ParseTreeListener {
 	 */
 	void exitFinder(JQLParser.FinderContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JQLParser#jValue}.
+	 * Enter a parse tree produced by {@link JQLParser#jqValue}.
 	 * @param ctx the parse tree
 	 */
-	void enterJValue(JQLParser.JValueContext ctx);
+	void enterJqValue(JQLParser.JqValueContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JQLParser#jValue}.
+	 * Exit a parse tree produced by {@link JQLParser#jqValue}.
 	 * @param ctx the parse tree
 	 */
-	void exitJValue(JQLParser.JValueContext ctx);
+	void exitJqValue(JQLParser.JqValueContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JQLParser#jField}.
+	 * Enter a parse tree produced by {@link JQLParser#jqField}.
 	 * @param ctx the parse tree
 	 */
-	void enterJField(JQLParser.JFieldContext ctx);
+	void enterJqField(JQLParser.JqFieldContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JQLParser#jField}.
+	 * Exit a parse tree produced by {@link JQLParser#jqField}.
 	 * @param ctx the parse tree
 	 */
-	void exitJField(JQLParser.JFieldContext ctx);
+	void exitJqField(JQLParser.JqFieldContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JQLParser#jObject}.
+	 * Enter a parse tree produced by {@link JQLParser#jqObject}.
 	 * @param ctx the parse tree
 	 */
-	void enterJObject(JQLParser.JObjectContext ctx);
+	void enterJqObject(JQLParser.JqObjectContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JQLParser#jObject}.
+	 * Exit a parse tree produced by {@link JQLParser#jqObject}.
 	 * @param ctx the parse tree
 	 */
-	void exitJObject(JQLParser.JObjectContext ctx);
+	void exitJqObject(JQLParser.JqObjectContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JQLParser#jArray}.
+	 * Enter a parse tree produced by {@link JQLParser#jqArray}.
 	 * @param ctx the parse tree
 	 */
-	void enterJArray(JQLParser.JArrayContext ctx);
+	void enterJqArray(JQLParser.JqArrayContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JQLParser#jArray}.
+	 * Exit a parse tree produced by {@link JQLParser#jqArray}.
 	 * @param ctx the parse tree
 	 */
-	void exitJArray(JQLParser.JArrayContext ctx);
+	void exitJqArray(JQLParser.JqArrayContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JQLParser#jNumber}.
+	 * Enter a parse tree produced by {@link JQLParser#jqNumber}.
 	 * @param ctx the parse tree
 	 */
-	void enterJNumber(JQLParser.JNumberContext ctx);
+	void enterJqNumber(JQLParser.JqNumberContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JQLParser#jNumber}.
+	 * Exit a parse tree produced by {@link JQLParser#jqNumber}.
 	 * @param ctx the parse tree
 	 */
-	void exitJNumber(JQLParser.JNumberContext ctx);
+	void exitJqNumber(JQLParser.JqNumberContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JQLParser#jString}.
+	 * Enter a parse tree produced by {@link JQLParser#jqString}.
 	 * @param ctx the parse tree
 	 */
-	void enterJString(JQLParser.JStringContext ctx);
+	void enterJqString(JQLParser.JqStringContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JQLParser#jString}.
+	 * Exit a parse tree produced by {@link JQLParser#jqString}.
 	 * @param ctx the parse tree
 	 */
-	void exitJString(JQLParser.JStringContext ctx);
+	void exitJqString(JQLParser.JqStringContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JQLParser#jBoolean}.
+	 * Enter a parse tree produced by {@link JQLParser#jqBoolean}.
 	 * @param ctx the parse tree
 	 */
-	void enterJBoolean(JQLParser.JBooleanContext ctx);
+	void enterJqBoolean(JQLParser.JqBooleanContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JQLParser#jBoolean}.
+	 * Exit a parse tree produced by {@link JQLParser#jqBoolean}.
 	 * @param ctx the parse tree
 	 */
-	void exitJBoolean(JQLParser.JBooleanContext ctx);
+	void exitJqBoolean(JQLParser.JqBooleanContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JQLParser#jNull}.
+	 * Enter a parse tree produced by {@link JQLParser#jqNull}.
 	 * @param ctx the parse tree
 	 */
-	void enterJNull(JQLParser.JNullContext ctx);
+	void enterJqNull(JQLParser.JqNullContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JQLParser#jNull}.
+	 * Exit a parse tree produced by {@link JQLParser#jqNull}.
 	 * @param ctx the parse tree
 	 */
-	void exitJNull(JQLParser.JNullContext ctx);
+	void exitJqNull(JQLParser.JqNullContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JQLParser#jVar}.
+	 * Enter a parse tree produced by {@link JQLParser#jqVar}.
 	 * @param ctx the parse tree
 	 */
-	void enterJVar(JQLParser.JVarContext ctx);
+	void enterJqVar(JQLParser.JqVarContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JQLParser#jVar}.
+	 * Exit a parse tree produced by {@link JQLParser#jqVar}.
 	 * @param ctx the parse tree
 	 */
-	void exitJVar(JQLParser.JVarContext ctx);
+	void exitJqVar(JQLParser.JqVarContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JQLParser#name}.
 	 * @param ctx the parse tree

@@ -67,6 +67,13 @@ public class JQLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements JQ
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitAccessor(JQLParser.AccessorContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitAggregator(JQLParser.AggregatorContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -74,7 +81,7 @@ public class JQLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements JQ
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAccessor(JQLParser.AccessorContext ctx) { return visitChildren(ctx); }
+	@Override public T visitKey(JQLParser.KeyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -88,63 +95,63 @@ public class JQLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements JQ
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJValue(JQLParser.JValueContext ctx) { return visitChildren(ctx); }
+	@Override public T visitJqValue(JQLParser.JqValueContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJField(JQLParser.JFieldContext ctx) { return visitChildren(ctx); }
+	@Override public T visitJqField(JQLParser.JqFieldContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJObject(JQLParser.JObjectContext ctx) { return visitChildren(ctx); }
+	@Override public T visitJqObject(JQLParser.JqObjectContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJArray(JQLParser.JArrayContext ctx) { return visitChildren(ctx); }
+	@Override public T visitJqArray(JQLParser.JqArrayContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJNumber(JQLParser.JNumberContext ctx) { return visitChildren(ctx); }
+	@Override public T visitJqNumber(JQLParser.JqNumberContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJString(JQLParser.JStringContext ctx) { return visitChildren(ctx); }
+	@Override public T visitJqString(JQLParser.JqStringContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJBoolean(JQLParser.JBooleanContext ctx) { return visitChildren(ctx); }
+	@Override public T visitJqBoolean(JQLParser.JqBooleanContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJNull(JQLParser.JNullContext ctx) { return visitChildren(ctx); }
+	@Override public T visitJqNull(JQLParser.JqNullContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJVar(JQLParser.JVarContext ctx) { return visitChildren(ctx); }
+	@Override public T visitJqVar(JQLParser.JqVarContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

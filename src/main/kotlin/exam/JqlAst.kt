@@ -38,6 +38,23 @@ data class Save(
     val file: String
 ) : Instruction
 
+data class Assign(
+    val varId: String,
+    val expression: Expression
+) : Instruction
+
+sealed interface Expression {}
+
+data class Accessor(
+    val variable: String,
+    val keys: List<Key>
+): Expression
+
+data class Key(
+    val id: String,
+    val isFinder: Boolean = false
+) {}
+
 
 enum class Aggregator {
     MAX,

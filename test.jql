@@ -1,1 +1,7 @@
 load $1 to doc
+curso = doc.curso
+ucs = doc.ucs
+siglas = doc.ucs*.sigla
+creditos = doc.ucs*.creditos
+maxHorasUc = doc.ucs*.horas | max
+total = ucs | count
