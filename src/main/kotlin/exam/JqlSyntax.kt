@@ -7,7 +7,7 @@ fun ScriptContext.toAst(): Script =
 
 fun InstructionContext.toAst(): Instruction =
     when {
-        this.assign() != null -> Assign(this.assign().variable().text, this.assign().expression().toAst())
+        this.assign() != null -> this.assign().toAst()
         this.load() != null -> this.load().toAst()
         this.save() != null -> TODO()
         else -> throw IllegalArgumentException("Cannot convert $this to Ast")
@@ -24,21 +24,41 @@ fun LoadContext.toAst(): Load =
             Filename(this.STR().text.trim('"')),
             this.variable().text
         )
+
         else -> throw IllegalArgumentException("Cannot convert $this to Ast")
     }
 
 fun AssignContext.toAst(): Assign = Assign(this.variable().text, this.expression().toAst())
 
-fun ExpressionContext.toAst(): Expression =
-    when {
-        this.accessor() != null -> {
-            val accessorContext = this.accessor()
-            val variable = accessorContext.variable().text
-            val keys = accessorContext.key().map { Key(it.ID().text, it.finder() != null) }
-            Accessor(variable, keys)
-        }
+fun ExpressionContext.toAst(): Expression {
+    val expression = when {
+        this.accessor() != null -> this.accessor().toAst()
+
         else -> throw IllegalArgumentException("Cannot convert $this to Ast")
     }
+    val aggregator =
+        if (this.aggregator() != null) this.aggregator().toAst()
+        else null
+
+    return if (aggregator != null) AggregatedExpression(expression, aggregator) else expression
+}
+
+fun AccessorContext.toAst(): Accessor {
+    val variable = variable().text
+    val keys = key().map { Key(it.ID().text, it.finder() != null) }
+    return Accessor(variable, keys)
+}
+
+fun AggregatorContext.toAst(): Aggregator =
+    when (this.AGGREGATORS().text) {
+        "max" -> Aggregator.MAX
+        "min" -> Aggregator.MIN
+        "count" -> Aggregator.COUNT
+        "sum" -> Aggregator.SUM
+        "avg" -> Aggregator.AVG
+        else -> throw IllegalArgumentException("Cannot convert $this to Ast")
+    }
+
 
 
     

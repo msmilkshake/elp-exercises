@@ -45,6 +45,11 @@ data class Assign(
 
 sealed interface Expression {}
 
+data class AggregatedExpression(
+    val expression: Expression,
+    val aggregator: Aggregator
+) : Expression
+
 data class Accessor(
     val variable: String,
     val keys: List<Key>

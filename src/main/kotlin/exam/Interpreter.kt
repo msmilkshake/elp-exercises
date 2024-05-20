@@ -23,9 +23,9 @@ class Interpreter(scriptFilename: String) {
             when (instruction) {
                 is Load -> {
                     val filename =
-                        when (instruction.file) {
-                            is Arg -> args[instruction.file.number]
-                            is Filename -> instruction.file.value
+                        when (val file = instruction.file) {
+                            is Arg -> args[file.number]
+                            is Filename -> file.value
                         }
                     loadJson(filename, instruction.varId)
                 }
@@ -37,6 +37,19 @@ class Interpreter(scriptFilename: String) {
                             val result = getFromMemory(expr.variable, expr.keys)
                             memory[instruction.varId] = result
                         }
+
+                        is AggregatedExpression -> {
+                            if (expr.expression is Accessor) {
+                                val accessor = expr.expression
+                                val accessorResult = getFromMemory(accessor.variable, accessor.keys)
+                                val result = when (accessorResult) {
+                                    is JArray -> aggregateResult(accessorResult, expr.aggregator)
+                                    else -> throw Exception("Aggregator operators can only be applied to arrays.")
+                                }
+                                memory[instruction.varId] = result
+                            }
+                        }
+
                     }
                 }
             }
@@ -78,12 +91,12 @@ class Interpreter(scriptFilename: String) {
                             is JObject -> it.fields.find { it.name.trim('"') == key.id }?.value?.let { listOf(it) }
                                 ?: listOf()
 
-                            else -> throw Exception("Cannot get a property ${key.id} on a non-object in array variable $varId.")
+                            else -> throw Exception("Cannot get property ${key.id} in array variable $varId.")
                         }
                     })
                 }
 
-                else -> throw Exception("Cannot get a property ${key.id} on a non-object variable $varId.")
+                else -> throw Exception("Cannot get property ${key.id} of variable $varId.")
             }
             if (key.isFinder) {
                 find = true;
@@ -92,6 +105,52 @@ class Interpreter(scriptFilename: String) {
 
         return value
     }
+
+    fun aggregateResult(list: JArray, aggregator: Aggregator): JValue =
+        when (aggregator) {
+            
+            Aggregator.MAX -> {
+                val max = list.elements.maxByOrNull {
+                    if (it is JNumber) it.value.toDouble()
+                    else throw IllegalArgumentException("Max must be applied to numbers.")
+                }
+                max ?: throw IllegalArgumentException("Max can't be applied to empty array.")
+            }
+
+            Aggregator.MIN -> {
+                val min = list.elements.minByOrNull {
+                    if (it is JNumber) it.value.toDouble()
+                    else throw IllegalArgumentException("Min must be applied to numbers.")
+                }
+                min ?: throw IllegalArgumentException("Min can't be applied to empty array.")
+            }
+
+            Aggregator.COUNT -> JNumber(list.elements.size.toDouble())
+            
+            Aggregator.SUM -> {
+                val sum = list.elements.fold(0.0) { acc, element ->
+                    when (element) {
+                        is JNumber -> acc + element.value.toDouble()
+                        else -> throw IllegalArgumentException("Sum must be applied to numbers.")
+                    }
+                }
+                JNumber(sum)
+            }
+
+            Aggregator.AVG -> {
+                val sum = list.elements.fold(0.0) { acc, element ->
+                    when (element) {
+                        is JNumber -> acc + element.value.toDouble()
+                        else -> throw IllegalArgumentException("Avg must be applied to numbers.")
+                    }
+                }
+                if (list.elements.isNotEmpty()) {
+                    JNumber(sum / list.elements.size)
+                } else {
+                    throw IllegalArgumentException("Array cannot be empty for Avg operation.")
+                }
+            }
+        }
 
     fun saveJson(filename: String, varId: String) {
         val jsonString = Files.readString(Paths.get(filename))
