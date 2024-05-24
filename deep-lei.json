@@ -1,0 +1,84 @@
+{
+  "curso": "LEI",
+  "ucs": [
+    {
+      "sigla": "IP",
+      "creditos": 6,
+      "horas": 4.5,
+      "modulos": [
+        {
+          "nome": "IP Parte 1",
+          "horas": 2.0,
+          "semanas": 5
+        },
+        {
+          "nome": "IP Parte 2",
+          "horas": 1.5,
+          "semanas": 6
+        }
+      ]
+    },
+    {
+      "sigla": "POO",
+      "creditos": 8,
+      "horas": 5,
+      "modulos": [
+        {
+          "nome": "POO Parte 1",
+          "horas": 2.5,
+          "semanas": 4
+        },
+        {
+          "nome": "POO Parte 2",
+          "horas": 2.0,
+          "semanas": 7
+        }
+      ]
+    },
+    {
+      "sigla": "ELP",
+      "creditos": 4,
+      "horas": 8.5,
+      "modulos": [
+        {
+          "nome": "ELP Parte 1",
+          "horas": 1.0,
+          "semanas": 3
+        }
+      ]
+    },
+    {
+      "sigla": "PPM",
+      "creditos": 7,
+      "horas": 9,
+      "modulos": [
+        {
+          "nome": "PPM Parte 1",
+          "horas": 1.0,
+          "semanas": 3
+        },
+        {
+          "nome": "PPM Parte 2",
+          "horas": 3.5,
+          "semanas": 2
+        },
+        {
+          "nome": "PPM Parte 3",
+          "horas": 2,
+          "semanas": 4
+        }
+      ]
+    }
+  ],
+  "booleanos": [
+    true,
+    false,
+    true,
+    false,
+    false,
+    true,
+    true,
+    false,
+    true
+  ]
+}

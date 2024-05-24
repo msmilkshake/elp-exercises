@@ -47,14 +47,18 @@ data class JString(val value: String) : JValue {
 }
 
 data class JArray(val elements: List<JValue>) : JValue {
-    fun validateTypes() {
-        if (elements.isNotEmpty()) {
-            for (element in elements.subList(1, elements.size - 1)) {
-                if (element.javaClass != elements[0].javaClass) {
-                    throw Exception("Array elements must be of the same type.")
-                }
+    fun flatten(): JArray {
+        val flatList: MutableList<JValue> = mutableListOf()
+
+        for (element in this.elements) {
+            if (element is JArray) {
+                flatList.addAll(element.flatten().elements)
+            } else {
+                flatList.add(element)
             }
         }
+
+        return JArray(flatList)
     }
 
     fun toString(indent: String): String {

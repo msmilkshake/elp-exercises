@@ -2,7 +2,7 @@ grammar JQL;
 
 script: sequence EOF;
 
-sequence: (instruction NEWLINE+)* instruction;
+sequence: (instruction NEWLINE+)* instruction NEWLINE*;
 
 instruction: load | save | assign;
 
@@ -13,7 +13,7 @@ assign:
     variable '=' expression;
     
     
-expression: (accessor | jqObject) aggregator?;
+expression: (accessor | jqValue) aggregator?;
 
 accessor: variable ('.' key)*;
 
@@ -22,7 +22,7 @@ key: ID finder?;
 finder: '*';
 
 jqValue:
-    jqString
+    | jqString
     | jqNumber
     | jqBoolean
     | jqNull

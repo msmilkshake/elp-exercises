@@ -48,32 +48,3 @@ fun JArrayContext.toAst(): JArray =
             else -> throw IllegalArgumentException("Cannot convert $this to Ast")
         }
     })
-
-
-fun main() {
-//    val text = """
-//            { "a": [{ "a": [1,2,3], "a": [4,5,6], "a": true, "myField": 3.77 }, { "a": [1,2,3], "b": [4,5,6], "c": true, "myField": 3.77 }, { "a": [1,2,3], "b": [4,5,6], "c": true, "myField": 3.77 }], "b": [4,5,6], "c": true, "myField": 3.77 }
-//        """.trimIndent()
-    
-//    val text = """
-//            { "a": [{ "a": [1,2,3], "b": [4,5,6], "c": true, "myField": 3.77 }, { "a": [1,2,3], "b": [4,5,6], "c": true, "myField": 3.77 }, { "a": [1,2,3], "b": [4,5,6], "c": true, "myField": 3.77 }], "b": [4,5,6], "c": true, "myField": 3.77 }
-//        """.trimIndent()
-
-//    val text = """
-//            { "a": [1, false] }
-//        """.trimIndent()
-    
-    val text = """
-            { "a": ["1", "false"], "aa": 3 }
-        """.trimIndent()
-    
-    val lexer = JsonLexer(CharStreams.fromString(text))
-    val parser = JsonParser(CommonTokenStream(lexer))
-    val test: JValue = parser.jObject().toAst()
-    println("Valid Object fields: ${test.validateFields()}")
-    println("Valid Array types: ${test.validateArrayType()}")
-    
-
-    println(test)
-    println()
-}

@@ -1,0 +1,87 @@
+load $1 to doc
+
+curso = doc.curso
+ucs = doc.ucs
+siglas = doc.ucs*.sigla
+
+booleanos = doc.booleanos | count
+
+creditosSum = doc.ucs*.creditos | sum
+creditosMax = doc.ucs*.creditos | max
+creditosMin = doc.ucs*.creditos | min
+creditosAvg = doc.ucs*.creditos | avg
+
+horasSum = doc.ucs*.horas | sum
+horasMax = doc.ucs*.horas | max
+horasMin = doc.ucs*.horas | min
+horasAvg = doc.ucs*.horas | avg
+total = ucs | count
+
+modulosNomes = doc.ucs*.modulos*.nome
+horasSemanais = doc.ucs*.modulos*.horas | sum
+semanas = doc.ucs*.modulos*.semanas | sum
+
+resumo1 = {
+  "curso": curso,
+  "ucs": siglas,
+  "creditosSum": creditosSum,
+  "creditosMax": creditosMax,
+  "creditosMin": creditosMin,
+  "creditosAvg": creditosAvg,
+  "horasSum": horasSum,
+  "horasMax": horasMax,
+  "horasMin": horasMin,
+  "horasAvg": horasAvg,
+  "totalUcs": total
+}
+
+resumo2 = {
+  "modulos": modulosNomes,
+  "horasSemanais": horasSemanais,
+  "semanas": semanas
+}
+
+resumoFinal = {
+  "resumo": {
+    "first": resumo1,
+    "second": resumo2
+  }
+}
+
+save resumoFinal to $2
+
+sumArray = [
+  creditosSum,
+  horasSum,
+  horasSemanais,
+  semanas
+]
+
+mixedArray = [
+  {
+    "resumo2": resumo2,
+    "semanas": semanas
+  },
+  sumArray,
+  "Sou uma String",
+  43,
+  {
+    "nestedSumArray": sumArray,
+    "literalArray": [10, 20, 30]
+  }
+]
+
+save mixedArray to "out-array.json"
+
+load "out-array.json" to loadArray
+
+finalDoc = {
+  "a": loadArray,
+  "b": doc,
+  "c": {
+    "d": resumoFinal
+  },
+  "booleanosCount": booleanos
+}
+
+save finalDoc to $3

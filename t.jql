@@ -1,2 +1,0 @@
-load "t.json" to doc
-myvar = doc.c.b

@@ -20,28 +20,43 @@ class Interpreter(scriptFilename: String) {
 
     fun executeInstructions(instructions: List<Instruction>) {
         instructions.forEach { instruction ->
+            println(instruction)
             when (instruction) {
                 is Load -> {
                     val filename =
                         when (val file = instruction.file) {
-                            is Arg -> args[file.number]
+                            is Arg -> {
+                                if (file.number >= args.size) {
+                                    throw IllegalArgumentException("Argument $${file.number} doesn't exist. Passed arguments: ${args.size}")
+                                }
+                                args[file.number]
+                            }
+
                             is Filename -> file.value
                         }
                     loadJson(filename, instruction.varId)
                 }
 
-                is Save -> TODO()
+                is Save -> {
+                    val filename =
+                        when (val file = instruction.file) {
+                            is Arg -> args[file.number]
+                            is Filename -> file.value
+                        }
+                    saveJson(filename, instruction.varId)
+                }
+
                 is Assign -> {
                     when (val expr = instruction.expression) {
                         is Accessor -> {
-                            val result = getFromMemory(expr.variable, expr.keys)
+                            val result = getFromMemory(expr.varId, expr.keys)
                             memory[instruction.varId] = result
                         }
 
                         is AggregatedExpression -> {
                             if (expr.expression is Accessor) {
                                 val accessor = expr.expression
-                                val accessorResult = getFromMemory(accessor.variable, accessor.keys)
+                                val accessorResult = getFromMemory(accessor.varId, accessor.keys)
                                 val result = when (accessorResult) {
                                     is JArray -> aggregateResult(accessorResult, expr.aggregator)
                                     else -> throw Exception("Aggregator operators can only be applied to arrays.")
@@ -50,9 +65,41 @@ class Interpreter(scriptFilename: String) {
                             }
                         }
 
+                        is JQValue -> {
+                            val jValue = when (expr) {
+                                is JQNumber -> JNumber(expr.value)
+                                is JQString -> JString(expr.value)
+                                is JQBoolean -> JBoolean(expr.value)
+                                is JQNull -> JNull
+                                is JQArray -> JArray(expr.elements.map { convertJQValueToJValue(it) })
+                                is JQObject -> JObject(expr.fields.map {
+                                    JField(
+                                        it.name,
+                                        convertJQValueToJValue(it.value)
+                                    )
+                                })
+
+                                is JQVar -> memory[expr.varId]
+                                    ?: throw IllegalArgumentException("Variable ${expr.varId} isn't defined.")
+                            }
+                            memory[instruction.varId] = jValue
+                        }
+
                     }
                 }
             }
+        }
+    }
+
+    fun convertJQValueToJValue(jqValue: JQValue): JValue {
+        return when (jqValue) {
+            is JQNumber -> JNumber(jqValue.value)
+            is JQString -> JString(jqValue.value)
+            is JQBoolean -> JBoolean(jqValue.value)
+            is JQNull -> JNull
+            is JQArray -> JArray(jqValue.elements.map { convertJQValueToJValue(it) })
+            is JQObject -> JObject(jqValue.fields.map { JField(it.name, convertJQValueToJValue(it.value)) })
+            is JQVar -> memory[jqValue.varId] ?: throw IllegalArgumentException("Variable ${jqValue.varId} isn't defined.")
         }
     }
 
@@ -60,17 +107,34 @@ class Interpreter(scriptFilename: String) {
         val scriptString = Files.readString(Paths.get(filename))
         val lexer = JQLLexer(CharStreams.fromString(scriptString))
         val parser = JQLParser(CommonTokenStream(lexer))
-        return parser.script().toAst()
+        val script = parser.script().toAst()
+        val errors = script.validate()
+        if (errors.isNotEmpty()) {
+            errors.map { error ->
+                System.err.println("Unresolved reference: ${error.varId} is not declared (Line ${error.instruction})")
+            }
+            throw Exception("The script has Compile Errors and can't be ran by the interpreter.")
+        }
+        return script
     }
 
     fun loadJson(filename: String, varId: String) {
         val jsonString = Files.readString(Paths.get(filename))
         val lexer = JsonLexer(CharStreams.fromString(jsonString))
         val parser = JsonParser(CommonTokenStream(lexer))
-        val json = parser.jObject().toAst()
+        val json = parser.jValue().toAst()
         memory[varId] = json
-        println("------- JSON ---------")
+        println("------- LOADED JSON ---------")
         println(json)
+        println()
+    }
+
+    fun saveJson(filename: String, varId: String) {
+        val jsonString = memory[varId].toString()
+        Files.writeString(Paths.get(filename), jsonString)
+        println("-------- SAVED JSON ---------")
+        println(jsonString)
+        println()
     }
 
     fun getFromMemory(varId: String, keys: List<Key>): JValue {
@@ -86,6 +150,7 @@ class Interpreter(scriptFilename: String) {
 
                 value is JArray && find -> {
                     find = false
+
                     JArray(value.elements.flatMap {
                         when (it) {
                             is JObject -> it.fields.find { it.name.trim('"') == key.id }?.value?.let { listOf(it) }
@@ -93,7 +158,7 @@ class Interpreter(scriptFilename: String) {
 
                             else -> throw Exception("Cannot get property ${key.id} in array variable $varId.")
                         }
-                    })
+                    }).flatten()
                 }
 
                 else -> throw Exception("Cannot get property ${key.id} of variable $varId.")
@@ -108,7 +173,7 @@ class Interpreter(scriptFilename: String) {
 
     fun aggregateResult(list: JArray, aggregator: Aggregator): JValue =
         when (aggregator) {
-            
+
             Aggregator.MAX -> {
                 val max = list.elements.maxByOrNull {
                     if (it is JNumber) it.value.toDouble()
@@ -126,7 +191,7 @@ class Interpreter(scriptFilename: String) {
             }
 
             Aggregator.COUNT -> JNumber(list.elements.size.toDouble())
-            
+
             Aggregator.SUM -> {
                 val sum = list.elements.fold(0.0) { acc, element ->
                     when (element) {
@@ -152,11 +217,4 @@ class Interpreter(scriptFilename: String) {
             }
         }
 
-    fun saveJson(filename: String, varId: String) {
-        val jsonString = Files.readString(Paths.get(filename))
-        val lexer = JsonLexer(CharStreams.fromString(jsonString))
-        val parser = JsonParser(CommonTokenStream(lexer))
-        val json = parser.jObject().toAst()
-        memory[varId] = json
-    }
 }

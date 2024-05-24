@@ -6,36 +6,88 @@ data class Script(
 ) {
     fun validate(): List<VarError> {
         val errors: MutableList<VarError> = mutableListOf()
+        val varIds: MutableSet<String> = args.toMutableSet()
+
+        fun checkErrors(expression: Expression, i: Int) {
+            when (expression) {
+                is Accessor -> {
+                    if (expression.varId !in varIds) {
+                        errors.add(VarError(expression.varId, i))
+                    }
+                }
+                
+                is JQVar -> {
+                    if (expression.varId !in varIds) {
+                        errors.add(VarError(expression.varId, i))
+                    }
+                }
+                
+                is AggregatedExpression -> {
+                    checkErrors(expression.expression, i)
+                }
+
+                is JQObject -> {
+                    expression.fields.forEach { field ->
+                        checkErrors(field.value, i)
+                    }
+                }
+
+                is JQArray -> {
+                    expression.elements.forEach { element ->
+                        checkErrors(element, i)
+                    }
+                }
+                
+                else -> {}
+            }
+        }
+
+        instructions.forEachIndexed { i, instruction ->
+            when (instruction) {
+                is Assign -> {
+                    checkErrors(instruction.expression, i)
+                    varIds.add(instruction.varId)
+                }
+
+                is Load -> {
+                    varIds.add(instruction.varId)
+                }
+
+                is Save -> {
+                    checkErrors(Accessor(instruction.varId, emptyList()), i)
+                }
+            }
+        }
+        
         return errors
     }
 }
 
 data class VarError(
     val varId: String,
-    val line: Int
+    val instruction: Int
 )
 
-sealed interface Instruction {}
-
-
-sealed interface LoadArg {}
+sealed interface FileArg
 
 data class Filename(
     val value: String
-) : LoadArg
+) : FileArg
 
 data class Arg(
     val number: Int
-) : LoadArg
+) : FileArg
+
+sealed interface Instruction
 
 data class Load(
-    val file: LoadArg,
+    val file: FileArg,
     val varId: String
 ) : Instruction
 
 data class Save(
     val varId: String,
-    val file: String
+    val file: FileArg
 ) : Instruction
 
 data class Assign(
@@ -43,7 +95,7 @@ data class Assign(
     val expression: Expression
 ) : Instruction
 
-sealed interface Expression {}
+sealed interface Expression
 
 data class AggregatedExpression(
     val expression: Expression,
@@ -51,14 +103,14 @@ data class AggregatedExpression(
 ) : Expression
 
 data class Accessor(
-    val variable: String,
+    val varId: String,
     val keys: List<Key>
-): Expression
+) : Expression
 
 data class Key(
     val id: String,
     val isFinder: Boolean = false
-) {}
+)
 
 
 enum class Aggregator {
@@ -70,11 +122,11 @@ enum class Aggregator {
 }
 
 
-sealed interface QJValue {}
+sealed interface JQValue : Expression
 
-data class QJField(val name: String, val value: JValue) {}
+data class JQField(val name: String, val value: JQValue)
 
-data class QJObject(val fields: List<JField>) : JValue {
+data class JQObject(val fields: List<JQField>) : JQValue {
     fun validateNames() {
         val fieldNames: MutableSet<String> = mutableSetOf()
         fields.forEach {
@@ -86,7 +138,7 @@ data class QJObject(val fields: List<JField>) : JValue {
     }
 }
 
-data class QJArray(val elements: List<JValue>) : JValue {
+data class JQArray(val elements: List<JQValue>) : JQValue {
     fun validateTypes() {
         if (elements.isNotEmpty()) {
             for (element in elements.subList(1, elements.size - 1)) {
@@ -98,12 +150,12 @@ data class QJArray(val elements: List<JValue>) : JValue {
     }
 }
 
-data object QJNull : JValue {}
+data object JQNull : JQValue
 
-data class QJBoolean(val value: Boolean) : JValue {}
+data class JQBoolean(val value: Boolean) : JQValue
 
-data class QJNumber(val value: Number) : JValue {}
+data class JQNumber(val value: Number) : JQValue
 
-data class QJString(val value: String) : JValue {}
+data class JQString(val value: String) : JQValue
 
-data class QJVar(val id: String) : JValue {}
+data class JQVar(val varId: String) : JQValue
