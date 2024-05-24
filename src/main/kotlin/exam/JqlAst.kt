@@ -138,17 +138,7 @@ data class JQObject(val fields: List<JQField>) : JQValue {
     }
 }
 
-data class JQArray(val elements: List<JQValue>) : JQValue {
-    fun validateTypes() {
-        if (elements.isNotEmpty()) {
-            for (element in elements.subList(1, elements.size - 1)) {
-                if (element.javaClass != elements[0].javaClass) {
-                    throw Exception("Array elements must be of the same type.")
-                }
-            }
-        }
-    }
-}
+data class JQArray(val elements: List<JQValue>) : JQValue
 
 data object JQNull : JQValue
 

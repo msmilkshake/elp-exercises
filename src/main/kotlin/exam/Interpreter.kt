@@ -99,7 +99,8 @@ class Interpreter(scriptFilename: String) {
             is JQNull -> JNull
             is JQArray -> JArray(jqValue.elements.map { convertJQValueToJValue(it) })
             is JQObject -> JObject(jqValue.fields.map { JField(it.name, convertJQValueToJValue(it.value)) })
-            is JQVar -> memory[jqValue.varId] ?: throw IllegalArgumentException("Variable ${jqValue.varId} isn't defined.")
+            is JQVar -> memory[jqValue.varId]
+                ?: throw IllegalArgumentException("Variable ${jqValue.varId} isn't defined.")
         }
     }
 

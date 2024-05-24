@@ -1,6 +1,6 @@
 package exam
 
-sealed interface JValue {}
+sealed interface JValue
 
 data class JField(val name: String, val value: JValue) {
     fun toString(indent: String): String =

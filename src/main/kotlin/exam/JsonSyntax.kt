@@ -1,8 +1,6 @@
 package exam
 
 import exam.JsonParser.*
-import org.antlr.v4.runtime.CharStreams
-import org.antlr.v4.runtime.CommonTokenStream
 
 fun JValueContext.toAst(): JValue =
     when {
