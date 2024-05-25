@@ -11,6 +11,3 @@ deep-resumo.jql deep-lei.json out-resumo.json out-final-doc.json
 - ### Added a little extra: Allows for nested * (find) operators
   - Instructions like: `modulosNomes = doc.ucs*.modulos*.nome`, 
     `horasSemanais = doc.ucs*.modulos*.horas | sum` that include nested for each object operator are supported;
-- ### Ignored validations regarding Json, defined in the half-semester practical exam
-  - Different types allowed in an array;
-  - Not validating duplicate Json Object keys;

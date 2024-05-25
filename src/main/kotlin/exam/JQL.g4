@@ -2,9 +2,9 @@ grammar JQL;
 
 script: sequence EOF;
 
-sequence: (instruction NEWLINE+)* instruction NEWLINE*;
+sequence: ((instruction | COMMENT) NEWLINE+)* instruction (NEWLINE | COMMENT)* ;
 
-instruction: load | save | assign;
+instruction: (load | save | assign) COMMENT?;
 
 load: 'load' (arg | STR) 'to' variable;
 save: 'save' variable 'to' (arg | STR);
@@ -31,8 +31,8 @@ jqValue:
     | jqVar;
 
 jqField: name ':' jqValue;
-jqObject: '{' NEWLINE* (jqField (',' NEWLINE* jqField)*)? NEWLINE* '}';
-jqArray: '[' NEWLINE* (jqValue (',' NEWLINE* jqValue)*)? NEWLINE* ']';
+jqObject: '{' (COMMENT? NEWLINE)* (jqField (',' (COMMENT? NEWLINE)* jqField)*)? (COMMENT? NEWLINE)* '}';
+jqArray: '[' (COMMENT? NEWLINE)* (jqValue (',' (COMMENT? NEWLINE)* jqValue)*)? (COMMENT? NEWLINE)* ']';
 
 jqNumber: INT | FLOAT;
 jqString: STR;
@@ -48,12 +48,13 @@ variable: ID;
 
 STR: '"' ~('"'|'\n'|'\r')* '"';
 AGGREGATORS: 'max' | 'min' | 'count' | 'sum' | 'avg';
-ID: [a-z][a-zA-Z0-9]*;
 TRUE: 'true';
 FALSE: 'false';
+ID: [a-z][a-zA-Z0-9]*;
 INT: [0-9]+;
 FLOAT: ([0-9]+)?'.'[0-9]+;
 NULL: 'null';
 
 NEWLINE: ('\r'? '\n')+;
+COMMENT: '#' ~('\r'|'\n')*;
 SPACE: ' '+ -> skip;

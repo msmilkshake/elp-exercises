@@ -1,5 +1,8 @@
 package exam
 
+import org.antlr.v4.runtime.CharStreams
+import org.antlr.v4.runtime.CommonTokenStream
+
 sealed interface JValue
 
 data class JField(val name: String, val value: JValue) {
@@ -47,6 +50,16 @@ data class JString(val value: String) : JValue {
 }
 
 data class JArray(val elements: List<JValue>) : JValue {
+    fun validateTypes() {
+        if (elements.isNotEmpty()) {
+            for (element in elements.subList(1, elements.size)) {
+                if (element.javaClass != elements[0].javaClass) {
+                    throw Exception("Array elements must be of the same type.")
+                }
+            }
+        }
+    }
+    
     fun flatten(): JArray {
         val flatList: MutableList<JValue> = mutableListOf()
 
@@ -69,4 +82,30 @@ data class JArray(val elements: List<JValue>) : JValue {
     }
 
     override fun toString(): String = toString("")
+}
+
+fun main() {
+//    val text = """
+//            { "a": [{ "a": [1,2,3], "a": [4,5,6], "a": true, "myField": 3.77 }, { "a": [1,2,3], "b": [4,5,6], "c": true, "myField": 3.77 }, { "a": [1,2,3], "b": [4,5,6], "c": true, "myField": 3.77 }], "b": [4,5,6], "c": true, "myField": 3.77 }
+//        """.trimIndent()
+
+//    val text = """
+//            { "a": [{ "a": [1,2,3], "b": [4,5,6], "c": true, "myField": 3.77 }, { "a": [1,2,3], "b": [4,5,6], "c": true, "myField": 3.77 }, { "a": [1,2,3], "b": [4,5,6], "c": true, "myField": 3.77 }], "b": [4,5,6], "c": true, "myField": 3.77 }
+//        """.trimIndent()
+
+//    val text = """
+//            { "a": [1, false] }
+//        """.trimIndent()
+
+    val text = """
+            { "a": [1.3, 2, 44.5], "aa": 3, "c": {"a": "abc", "b": "cba", "c": {"x": {}, "u": 15.2, "z": [1, 2, 3.0, -5, -3.3] } } }
+        """.trimIndent()
+
+    val lexer = JsonLexer(CharStreams.fromString(text))
+    val parser = JsonParser(CommonTokenStream(lexer))
+    val test: JValue = parser.jValue().toAst()
+    println("Valid Object fields: ${test.validate()}")
+
+    println(test)
+    println()
 }
